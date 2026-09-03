@@ -1,0 +1,1896 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Учебники 5–6</title>
+
+<style>
+
+:root {
+    --text-contrast: 1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+    font-family: Arial, sans-serif;
+
+    background: #0d1017;
+    color: white;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* ================= HEADER ================= */
+
+header {
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 25px;
+
+    background: #171b24;
+
+    border-bottom: 1px solid #303642;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.logo span {
+    color: #7185ff;
+}
+
+.search {
+    width: 100%;
+    max-width: 550px;
+
+    margin-left: 35px;
+}
+
+.search input {
+    width: 100%;
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: 1px solid #343a49;
+    outline: none;
+
+    border-radius: 14px;
+
+    background: #252a35;
+    color: white;
+
+    font-size: 15px;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.search input:focus {
+    border-color: #7185ff;
+}
+
+.settings-button {
+    margin-left: auto;
+
+    width: 45px;
+    height: 45px;
+
+    border: 0;
+    border-radius: 13px;
+
+    background: #252a35;
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 21px;
+
+    transition: .15s;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.settings-button:hover {
+    background: #343b4e;
+
+    transform: rotate(20deg);
+}
+
+/* ================= LAYOUT ================= */
+
+.layout {
+    display: flex;
+
+    width: 100%;
+    height: calc(100vh - 70px);
+}
+
+aside {
+    width: 235px;
+
+    flex-shrink: 0;
+
+    padding: 18px 12px;
+
+    background: #151920;
+
+    border-right: 1px solid #303642;
+}
+
+/* ================= NAV ================= */
+
+.nav {
+    padding: 14px 16px;
+
+    margin-bottom: 8px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: .15s;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.nav:hover {
+    background: #252c40;
+}
+
+.nav.active {
+    background: #303b68;
+}
+
+/* ================= MAIN ================= */
+
+main {
+    flex: 1;
+
+    padding: 30px;
+
+    overflow-y: auto;
+}
+
+h1 {
+    margin: 0 0 8px;
+
+    font-size: 32px;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.subtitle {
+    color: #9299aa;
+
+    margin-bottom: 25px;
+
+    filter: contrast(var(--text-contrast));
+}
+
+/* ================= BOOKS ================= */
+
+.grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(270px, 1fr)
+        );
+
+    gap: 22px;
+}
+
+.card {
+    background: #1a1f29;
+
+    border: 1px solid #303642;
+
+    border-radius: 20px;
+
+    padding: 23px;
+
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+
+    border-color: #7185ff;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.25);
+}
+
+.card h2,
+.card p,
+.card button {
+    filter: contrast(var(--text-contrast));
+}
+
+.icon {
+    width: 75px;
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #252c40;
+
+    font-size: 42px;
+}
+
+.card h2 {
+    margin: 16px 0 6px;
+}
+
+.card p {
+    color: #aeb5c5;
+
+    min-height: 40px;
+}
+
+.open-button {
+    border: 0;
+
+    border-radius: 11px;
+
+    padding: 12px 18px;
+
+    background: #647cff;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: .15s;
+}
+
+.open-button:hover {
+    background: #5169e5;
+}
+
+/* ================= SETTINGS ================= */
+
+.settings-overlay {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 2000;
+
+    background: rgba(0,0,0,.65);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.settings-overlay.show {
+    display: flex;
+}
+
+.settings {
+    width: 430px;
+
+    max-width:
+        calc(100vw - 30px);
+
+    background: #1a1f29;
+
+    border: 1px solid #3a4150;
+
+    border-radius: 20px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.5);
+}
+
+.settings-header {
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 25px;
+}
+
+.settings-header h2 {
+    flex: 1;
+
+    margin: 0;
+
+    font-size: 23px;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.close-settings {
+    width: 38px;
+    height: 38px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #292f3b;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+.close-settings:hover {
+    background: #3b4353;
+}
+
+.setting {
+    margin-bottom: 25px;
+}
+
+.setting-title {
+    display: flex;
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.setting-title span:first-child {
+    flex: 1;
+
+    font-size: 16px;
+
+    font-weight: bold;
+}
+
+.contrast-value {
+    padding: 5px 10px;
+
+    border-radius: 8px;
+
+    background: #30384a;
+
+    color: #aebcff;
+
+    font-weight: bold;
+}
+
+.contrast-controls {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+}
+
+.contrast-button {
+    width: 42px;
+    height: 42px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #292f3b;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 20px;
+}
+
+.contrast-button:hover {
+    background: #3a4355;
+}
+
+.contrast-slider {
+    flex: 1;
+
+    height: 6px;
+
+    cursor: pointer;
+
+    accent-color: #7185ff;
+}
+
+.contrast-description {
+    margin-top: 10px;
+
+    color: #8f97a8;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.reset-button {
+    width: 100%;
+
+    height: 44px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: #292f3b;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.reset-button:hover {
+    background: #3a4355;
+}
+
+/* ================= READER ================= */
+
+#reader {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    background: #080a0e;
+}
+
+.reader-header {
+    height: 64px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 10px 15px;
+
+    background: #171b24;
+
+    border-bottom: 1px solid #303642;
+}
+
+.reader-title {
+    flex: 1;
+
+    font-weight: bold;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    filter: contrast(var(--text-contrast));
+}
+
+.reader-button {
+    height: 40px;
+    min-width: 42px;
+
+    padding: 5px 13px;
+
+    border: 0;
+
+    border-radius: 10px;
+
+    background: #252a35;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+.reader-button:hover {
+    background: #343b4e;
+}
+
+.page-info {
+    min-width: 120px;
+
+    text-align: center;
+
+    color: #c4cad7;
+
+    filter: contrast(var(--text-contrast));
+}
+
+/* ================= BOOK ================= */
+
+.book-area {
+    position: absolute;
+
+    top: 64px;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: auto;
+
+    padding: 20px;
+}
+
+.book {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    min-width: min-content;
+}
+
+.page {
+    display: block;
+
+    background: white;
+
+    box-shadow:
+        0 8px 35px rgba(0,0,0,.55);
+
+    max-width: 46vw;
+
+    max-height:
+        calc(100vh - 160px);
+}
+
+.page.hidden {
+    display: none;
+}
+
+/* ================= LOADING ================= */
+
+.loading {
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #080a0e;
+
+    z-index: 20;
+
+    font-size: 19px;
+}
+
+.error {
+    max-width: 650px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    line-height: 1.7;
+
+    color: #ff7373;
+}
+
+/* ================= BOTTOM ================= */
+
+.reader-bottom {
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    background: #171b24;
+
+    border-top: 1px solid #303642;
+}
+
+.reader-bottom button {
+    height: 42px;
+
+    padding: 0 18px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: #252a35;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.reader-bottom button:hover {
+    background: #343b4e;
+}
+
+.reader-bottom button:disabled {
+    opacity: .35;
+
+    cursor: not-allowed;
+}
+
+.zoom-info {
+    min-width: 70px;
+
+    text-align: center;
+
+    color: #c4cad7;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:800px) {
+
+    aside {
+        width: 65px;
+    }
+
+    .nav {
+        font-size: 0;
+
+        text-align: center;
+
+        padding: 14px 5px;
+    }
+
+    main {
+        padding: 18px;
+    }
+
+    .search {
+        margin-left: 15px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .book {
+        flex-direction: column;
+    }
+
+    .page {
+        max-width: 90vw;
+
+        max-height:
+            calc(100vh - 170px);
+    }
+
+    .page:nth-child(2) {
+        display: none !important;
+    }
+
+    .reader-bottom button {
+        padding: 0 10px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+```
+<div class="logo">
+    📚 Учебники <span>5–6</span>
+</div>
+
+
+<div class="search">
+
+    <input
+        id="search"
+        type="text"
+        placeholder="🔎 Поиск учебника..."
+        oninput="searchBooks()"
+    >
+
+</div>
+
+
+<button
+    class="settings-button"
+    onclick="openSettings()"
+    title="Настройки"
+>
+    ⚙️
+</button>
+```
+
+</header>
+
+<!-- ================= LAYOUT ================= -->
+
+<div class="layout">
+
+```
+<aside>
+
+    <div
+        class="nav active"
+        onclick="filterBooks('all', this)"
+    >
+        🏠 Главная
+    </div>
+
+
+    <div
+        class="nav"
+        onclick="filterBooks('math', this)"
+    >
+        📐 Математика
+    </div>
+
+
+    <div
+        class="nav"
+        onclick="filterBooks('rus', this)"
+    >
+        📘 Русский язык
+    </div>
+
+
+    <div
+        class="nav"
+        onclick="filterBooks('5', this)"
+    >
+        5️⃣ 5 класс
+    </div>
+
+</aside>
+
+
+<main>
+
+    <h1>
+        Учебники
+    </h1>
+
+
+    <div class="subtitle">
+        Учебники для 5 класса
+    </div>
+
+
+    <div
+        class="grid"
+        id="books"
+    >
+
+
+        <!-- МАТЕМАТИКА -->
+
+        <div
+            class="card book-card math 5"
+            data-name="Математика 5 класс"
+        >
+
+            <div class="icon">
+                📐
+            </div>
+
+
+            <h2>
+                Математика
+            </h2>
+
+
+            <p>
+                5 класс · 1 часть
+            </p>
+
+
+            <button
+                class="open-button"
+                onclick="openBook(
+                    'учебники/математика/Matematika_5_klass_1_chast_.pdf',
+                    'Математика — 5 класс'
+                )"
+            >
+                📖 Открыть
+            </button>
+
+        </div>
+
+
+        <!-- РУССКИЙ ЯЗЫК -->
+
+        <div
+            class="card book-card rus 5"
+            data-name="Русский язык 5 класс"
+        >
+
+            <div class="icon">
+                📘
+            </div>
+
+
+            <h2>
+                Русский язык
+            </h2>
+
+
+            <p>
+                5 класс · 1 часть
+            </p>
+
+
+            <button
+                class="open-button"
+                onclick="openBook(
+                    'учебники/русский язык/Russkiy_yazyk_5_klass_1_chast_.pdf',
+                    'Русский язык — 5 класс'
+                )"
+            >
+                📖 Открыть
+            </button>
+
+        </div>
+
+
+    </div>
+
+</main>
+```
+
+</div>
+
+<!-- ================= SETTINGS ================= -->
+
+<div
+    class="settings-overlay"
+    id="settingsOverlay"
+    onclick="closeSettingsOutside(event)"
+>
+
+```
+<div
+    class="settings"
+    onclick="event.stopPropagation()"
+>
+
+
+    <div class="settings-header">
+
+        <h2>
+            ⚙️ Настройки
+        </h2>
+
+
+        <button
+            class="close-settings"
+            onclick="closeSettings()"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <div class="setting">
+
+        <div class="setting-title">
+
+            <span>
+                🌓 Контрастность текста
+            </span>
+
+            <span
+                class="contrast-value"
+                id="contrastValue"
+            >
+                100%
+            </span>
+
+        </div>
+
+
+        <div class="contrast-controls">
+
+            <button
+                class="contrast-button"
+                onclick="changeContrast(-10)"
+            >
+                −
+            </button>
+
+
+            <input
+                id="contrastSlider"
+                class="contrast-slider"
+                type="range"
+                min="50"
+                max="200"
+                step="10"
+                value="100"
+                oninput="setContrast(this.value)"
+            >
+
+
+            <button
+                class="contrast-button"
+                onclick="changeContrast(10)"
+            >
+                +
+            </button>
+
+        </div>
+
+
+        <div class="contrast-description">
+
+            50% — низкая контрастность.
+            100% — обычная.
+            200% — высокая.
+
+            <br>
+
+            Настройка автоматически
+            сохраняется в браузере.
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="reset-button"
+        onclick="resetSettings()"
+    >
+        ↩️ Сбросить настройки
+    </button>
+
+
+</div>
+```
+
+</div>
+
+<!-- ================= PDF READER ================= -->
+
+<div id="reader">
+
+```
+<div class="reader-header">
+
+    <button
+        class="reader-button"
+        onclick="closeBook()"
+    >
+        ←
+    </button>
+
+
+    <div
+        class="reader-title"
+        id="readerTitle"
+    >
+        Учебник
+    </div>
+
+
+    <div
+        class="page-info"
+        id="pageInfo"
+    >
+        1–2 / 0
+    </div>
+
+
+    <button
+        class="reader-button"
+        onclick="zoomOut()"
+    >
+        −
+    </button>
+
+
+    <button
+        class="reader-button"
+        onclick="zoomIn()"
+    >
+        +
+    </button>
+
+
+    <button
+        class="reader-button"
+        onclick="fullscreenBook()"
+    >
+        ⛶
+    </button>
+
+</div>
+
+
+<div class="book-area">
+
+
+    <div
+        class="loading"
+        id="loading"
+    >
+        📖 Загрузка учебника...
+    </div>
+
+
+    <div
+        class="book"
+        id="bookPages"
+    >
+
+        <canvas
+            id="page1"
+            class="page"
+        ></canvas>
+
+
+        <canvas
+            id="page2"
+            class="page"
+        ></canvas>
+
+    </div>
+
+</div>
+
+
+<div class="reader-bottom">
+
+
+    <button
+        id="previousButton"
+        onclick="previousPages()"
+    >
+        ← Предыдущие
+    </button>
+
+
+    <div
+        class="zoom-info"
+        id="zoomInfo"
+    >
+        100%
+    </div>
+
+
+    <button
+        id="nextButton"
+        onclick="nextPages()"
+    >
+        Следующие →
+    </button>
+
+</div>
+```
+
+</div>
+
+<!-- ================= PDF.JS ================= -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
+<script>
+
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+
+let pdfDocument = null;
+
+let currentPage = 1;
+
+let zoom = 1.0;
+
+
+/* ================= OPEN BOOK ================= */
+
+async function openBook(path, title) {
+
+    document
+        .getElementById("reader")
+        .style.display = "block";
+
+
+    document
+        .getElementById("readerTitle")
+        .textContent = title;
+
+
+    document
+        .getElementById("loading")
+        .style.display = "flex";
+
+
+    document
+        .getElementById("loading")
+        .innerHTML =
+        "📖 Загрузка учебника...";
+
+
+    currentPage = 1;
+
+    zoom = 1.0;
+
+    updateZoom();
+
+
+    try {
+
+        pdfDocument =
+            await pdfjsLib
+                .getDocument({
+                    url: path
+                })
+                .promise;
+
+
+        document
+            .getElementById("loading")
+            .style.display = "none";
+
+
+        await renderPages();
+
+
+    } catch(error) {
+
+        console.error(error);
+
+
+        document
+            .getElementById("loading")
+            .innerHTML = `
+
+                <div class="error">
+
+                    ❌ Не удалось открыть учебник.
+
+                    <br><br>
+
+                    Проверь путь:
+
+                    <br><br>
+
+                    <b>${path}</b>
+
+                    <br><br>
+
+                    Убедись, что PDF находится
+                    в GitHub-репозитории.
+
+                </div>
+
+            `;
+
+    }
+
+}
+
+
+/* ================= RENDER ================= */
+
+async function renderPages() {
+
+    if (!pdfDocument)
+        return;
+
+
+    const firstPage =
+        currentPage;
+
+
+    const secondPage =
+        currentPage + 1;
+
+
+    await renderPage(
+        firstPage,
+        document.getElementById("page1")
+    );
+
+
+    if (
+        secondPage <=
+        pdfDocument.numPages
+    ) {
+
+        document
+            .getElementById("page2")
+            .classList.remove("hidden");
+
+
+        await renderPage(
+            secondPage,
+            document.getElementById("page2")
+        );
+
+    } else {
+
+        document
+            .getElementById("page2")
+            .classList.add("hidden");
+
+    }
+
+
+    document
+        .getElementById("pageInfo")
+        .textContent =
+        `${firstPage}–${Math.min(
+            secondPage,
+            pdfDocument.numPages
+        )} / ${pdfDocument.numPages}`;
+
+
+    updateButtons();
+
+}
+
+
+/* ================= RENDER PAGE ================= */
+
+async function renderPage(
+    pageNumber,
+    canvas
+) {
+
+    if (
+        pageNumber < 1 ||
+        pageNumber > pdfDocument.numPages
+    )
+        return;
+
+
+    const page =
+        await pdfDocument.getPage(
+            pageNumber
+        );
+
+
+    const viewport =
+        page.getViewport({
+            scale: zoom
+        });
+
+
+    const context =
+        canvas.getContext("2d");
+
+
+    canvas.width =
+        viewport.width;
+
+
+    canvas.height =
+        viewport.height;
+
+
+    await page.render({
+
+        canvasContext: context,
+
+        viewport: viewport
+
+    }).promise;
+
+}
+
+
+/* ================= NEXT ================= */
+
+async function nextPages() {
+
+    if (!pdfDocument)
+        return;
+
+
+    if (
+        currentPage + 2 <=
+        pdfDocument.numPages
+    ) {
+
+        currentPage += 2;
+
+        await renderPages();
+
+    }
+
+}
+
+
+/* ================= PREVIOUS ================= */
+
+async function previousPages() {
+
+    if (!pdfDocument)
+        return;
+
+
+    if (currentPage > 1) {
+
+        currentPage -= 2;
+
+
+        if (currentPage < 1)
+            currentPage = 1;
+
+
+        await renderPages();
+
+    }
+
+}
+
+
+/* ================= BUTTONS ================= */
+
+function updateButtons() {
+
+    if (!pdfDocument)
+        return;
+
+
+    document
+        .getElementById("previousButton")
+        .disabled =
+        currentPage <= 1;
+
+
+    document
+        .getElementById("nextButton")
+        .disabled =
+        currentPage + 2 >
+        pdfDocument.numPages;
+
+}
+
+
+/* ================= ZOOM ================= */
+
+async function zoomIn() {
+
+    if (!pdfDocument)
+        return;
+
+
+    if (zoom >= 2.5)
+        return;
+
+
+    zoom =
+        Math.min(
+            2.5,
+            zoom + 0.1
+        );
+
+
+    updateZoom();
+
+    await renderPages();
+
+}
+
+
+async function zoomOut() {
+
+    if (!pdfDocument)
+        return;
+
+
+    if (zoom <= 0.5)
+        return;
+
+
+    zoom =
+        Math.max(
+            0.5,
+            zoom - 0.1
+        );
+
+
+    updateZoom();
+
+    await renderPages();
+
+}
+
+
+function updateZoom() {
+
+    document
+        .getElementById("zoomInfo")
+        .textContent =
+        Math.round(
+            zoom * 100
+        ) + "%";
+
+}
+
+
+/* ================= CLOSE ================= */
+
+function closeBook() {
+
+    document
+        .getElementById("reader")
+        .style.display = "none";
+
+
+    pdfDocument = null;
+
+}
+
+
+/* ================= FULLSCREEN ================= */
+
+function fullscreenBook() {
+
+    const reader =
+        document.getElementById(
+            "reader"
+        );
+
+
+    if (
+        document.fullscreenElement
+    ) {
+
+        document.exitFullscreen();
+
+    } else if (
+        reader.requestFullscreen
+    ) {
+
+        reader.requestFullscreen();
+
+    }
+
+}
+
+
+/* ================= KEYBOARD ================= */
+
+document.addEventListener(
+    "keydown",
+    async function(e) {
+
+        const reader =
+            document.getElementById(
+                "reader"
+            );
+
+
+        if (
+            reader.style.display !==
+            "block"
+        )
+            return;
+
+
+        if (
+            e.key === "ArrowRight"
+        ) {
+
+            await nextPages();
+
+        }
+
+
+        if (
+            e.key === "ArrowLeft"
+        ) {
+
+            await previousPages();
+
+        }
+
+
+        if (
+            e.key === "+" ||
+            e.key === "="
+        ) {
+
+            await zoomIn();
+
+        }
+
+
+        if (
+            e.key === "-"
+        ) {
+
+            await zoomOut();
+
+        }
+
+
+        if (
+            e.key === "Escape" &&
+            !document.fullscreenElement
+        ) {
+
+            closeBook();
+
+        }
+
+    }
+);
+
+
+/* ================= TOUCH ================= */
+
+let touchStartX = 0;
+
+
+document
+    .getElementById("reader")
+    .addEventListener(
+        "touchstart",
+        function(e) {
+
+            touchStartX =
+                e.changedTouches[0]
+                    .screenX;
+
+        }
+    );
+
+
+document
+    .getElementById("reader")
+    .addEventListener(
+        "touchend",
+        async function(e) {
+
+            const touchEndX =
+                e.changedTouches[0]
+                    .screenX;
+
+
+            if (
+                touchEndX <
+                touchStartX - 50
+            ) {
+
+                await nextPages();
+
+            }
+
+
+            if (
+                touchEndX >
+                touchStartX + 50
+            ) {
+
+                await previousPages();
+
+            }
+
+        }
+    );
+
+</script>
+
+<!-- ================= FILTER + SETTINGS ================= -->
+
+<script>
+
+/* ================= FILTER ================= */
+
+let currentFilter = "all";
+
+
+function filterBooks(
+    filter,
+    element
+) {
+
+    currentFilter = filter;
+
+
+    document
+        .querySelectorAll(".nav")
+        .forEach(
+            item =>
+            item.classList.remove(
+                "active"
+            )
+        );
+
+
+    element.classList.add(
+        "active"
+    );
+
+
+    searchBooks();
+
+}
+
+
+function searchBooks() {
+
+    const query =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    document
+        .querySelectorAll(".book-card")
+        .forEach(card => {
+
+            const name =
+                card.dataset.name
+                    .toLowerCase();
+
+
+            const filterOK =
+                currentFilter === "all" ||
+                card.classList.contains(
+                    currentFilter
+                );
+
+
+            const searchOK =
+                name.includes(query);
+
+
+            card.style.display =
+                filterOK && searchOK
+                    ? "block"
+                    : "none";
+
+        });
+
+}
+
+
+/* ================= SETTINGS ================= */
+
+function openSettings() {
+
+    document
+        .getElementById("settingsOverlay")
+        .classList.add("show");
+
+}
+
+
+function closeSettings() {
+
+    document
+        .getElementById("settingsOverlay")
+        .classList.remove("show");
+
+}
+
+
+function closeSettingsOutside(event) {
+
+    if (
+        event.target.id ===
+        "settingsOverlay"
+    ) {
+
+        closeSettings();
+
+    }
+
+}
+
+
+/* ================= CONTRAST ================= */
+
+function setContrast(value) {
+
+    value =
+        Math.max(
+            50,
+            Math.min(
+                200,
+                Number(value)
+            )
+        );
+
+
+    document
+        .documentElement
+        .style
+        .setProperty(
+            "--text-contrast",
+            value / 100
+        );
+
+
+    document
+        .getElementById(
+            "contrastValue"
+        )
+        .textContent =
+        value + "%";
+
+
+    document
+        .getElementById(
+            "contrastSlider"
+        )
+        .value =
+        value;
+
+
+    localStorage.setItem(
+        "textContrast",
+        value
+    );
+
+}
+
+
+function changeContrast(amount) {
+
+    const slider =
+        document.getElementById(
+            "contrastSlider"
+        );
+
+
+    let value =
+        Number(slider.value);
+
+
+    value += amount;
+
+
+    value =
+        Math.max(
+            50,
+            Math.min(
+                200,
+                value
+            )
+        );
+
+
+    setContrast(value);
+
+}
+
+
+function resetSettings() {
+
+    setContrast(100);
+
+}
+
+
+/* ================= LOAD SETTINGS ================= */
+
+(function loadSettings() {
+
+    const saved =
+        localStorage.getItem(
+            "textContrast"
+        );
+
+
+    if (saved !== null) {
+
+        setContrast(
+            Number(saved)
+        );
+
+    } else {
+
+        setContrast(100);
+
+    }
+
+})();
+
+
+/* ================= ESC ================= */
+
+document.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (
+            e.key === "Escape"
+        ) {
+
+            const overlay =
+                document.getElementById(
+                    "settingsOverlay"
+                );
+
+
+            if (
+                overlay.classList.contains(
+                    "show"
+                )
+            ) {
+
+                closeSettings();
+
+            }
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
