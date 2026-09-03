@@ -9,6 +9,10 @@
 
 <style>
 
+/* =========================================================
+   ОСНОВНЫЕ НАСТРОЙКИ
+   ========================================================= */
+
 :root {
     --text-contrast: 1;
 }
@@ -20,10 +24,15 @@
 html,
 body {
     margin: 0;
+    padding: 0;
+
     width: 100%;
     height: 100%;
 
-    font-family: Arial, sans-serif;
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
     background: #0d1017;
     color: white;
@@ -33,7 +42,10 @@ body {
     overflow: hidden;
 }
 
-/* ================= HEADER ================= */
+
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 header {
     height: 70px;
@@ -45,21 +57,29 @@ header {
 
     background: #171b24;
 
-    border-bottom: 1px solid #303642;
+    border-bottom:
+        1px solid #303642;
 }
 
 .logo {
     font-size: 25px;
+
     font-weight: bold;
 
     white-space: nowrap;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .logo span {
     color: #7185ff;
 }
+
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
 .search {
     width: 100%;
@@ -70,26 +90,41 @@ header {
 
 .search input {
     width: 100%;
+
     height: 44px;
 
-    padding: 0 18px;
+    padding:
+        0 18px;
 
-    border: 1px solid #343a49;
+    border:
+        1px solid #343a49;
+
     outline: none;
 
     border-radius: 14px;
 
     background: #252a35;
+
     color: white;
 
     font-size: 15px;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
+}
+
+.search input::placeholder {
+    color: #9ca4b5;
 }
 
 .search input:focus {
     border-color: #7185ff;
 }
+
+
+/* =========================================================
+   SETTINGS BUTTON
+   ========================================================= */
 
 .settings-button {
     margin-left: auto;
@@ -98,33 +133,42 @@ header {
     height: 45px;
 
     border: 0;
+
     border-radius: 13px;
 
     background: #252a35;
+
     color: white;
 
     cursor: pointer;
 
     font-size: 21px;
 
-    transition: .15s;
+    transition:
+        .15s;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .settings-button:hover {
     background: #343b4e;
 
-    transform: rotate(20deg);
+    transform:
+        rotate(20deg);
 }
 
-/* ================= LAYOUT ================= */
+
+/* =========================================================
+   MAIN LAYOUT
+   ========================================================= */
 
 .layout {
     display: flex;
 
     width: 100%;
-    height: calc(100vh - 70px);
+    height:
+        calc(100vh - 70px);
 }
 
 aside {
@@ -132,17 +176,23 @@ aside {
 
     flex-shrink: 0;
 
-    padding: 18px 12px;
+    padding:
+        18px 12px;
 
     background: #151920;
 
-    border-right: 1px solid #303642;
+    border-right:
+        1px solid #303642;
 }
 
-/* ================= NAV ================= */
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 .nav {
-    padding: 14px 16px;
+    padding:
+        14px 16px;
 
     margin-bottom: 8px;
 
@@ -150,9 +200,11 @@ aside {
 
     cursor: pointer;
 
-    transition: .15s;
+    transition:
+        .15s;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .nav:hover {
@@ -163,7 +215,10 @@ aside {
     background: #303b68;
 }
 
-/* ================= MAIN ================= */
+
+/* =========================================================
+   MAIN
+   ========================================================= */
 
 main {
     flex: 1;
@@ -174,11 +229,13 @@ main {
 }
 
 h1 {
-    margin: 0 0 8px;
+    margin:
+        0 0 8px;
 
     font-size: 32px;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .subtitle {
@@ -186,10 +243,14 @@ h1 {
 
     margin-bottom: 25px;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
-/* ================= BOOKS ================= */
+
+/* =========================================================
+   BOOK GRID
+   ========================================================= */
 
 .grid {
     display: grid;
@@ -206,28 +267,34 @@ h1 {
 .card {
     background: #1a1f29;
 
-    border: 1px solid #303642;
+    border:
+        1px solid #303642;
 
     border-radius: 20px;
 
     padding: 23px;
 
-    transition: .2s;
+    transition:
+        .2s;
 }
 
 .card:hover {
-    transform: translateY(-4px);
+    transform:
+        translateY(-4px);
 
-    border-color: #7185ff;
+    border-color:
+        #7185ff;
 
     box-shadow:
-        0 10px 30px rgba(0,0,0,.25);
+        0 10px 30px
+        rgba(0,0,0,.25);
 }
 
 .card h2,
 .card p,
 .card button {
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .icon {
@@ -247,7 +314,8 @@ h1 {
 }
 
 .card h2 {
-    margin: 16px 0 6px;
+    margin:
+        16px 0 6px;
 }
 
 .card p {
@@ -261,9 +329,11 @@ h1 {
 
     border-radius: 11px;
 
-    padding: 12px 18px;
+    padding:
+        12px 18px;
 
-    background: #647cff;
+    background:
+        #647cff;
 
     color: white;
 
@@ -271,14 +341,19 @@ h1 {
 
     font-size: 15px;
 
-    transition: .15s;
+    transition:
+        .15s;
 }
 
 .open-button:hover {
-    background: #5169e5;
+    background:
+        #5169e5;
 }
 
-/* ================= SETTINGS ================= */
+
+/* =========================================================
+   SETTINGS OVERLAY
+   ========================================================= */
 
 .settings-overlay {
     display: none;
@@ -289,7 +364,8 @@ h1 {
 
     z-index: 2000;
 
-    background: rgba(0,0,0,.65);
+    background:
+        rgba(0,0,0,.65);
 
     align-items: center;
     justify-content: center;
@@ -299,22 +375,30 @@ h1 {
     display: flex;
 }
 
+
+/* =========================================================
+   SETTINGS WINDOW
+   ========================================================= */
+
 .settings {
     width: 430px;
 
     max-width:
         calc(100vw - 30px);
 
-    background: #1a1f29;
+    background:
+        #1a1f29;
 
-    border: 1px solid #3a4150;
+    border:
+        1px solid #3a4150;
 
     border-radius: 20px;
 
     padding: 25px;
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,.5);
+        0 20px 70px
+        rgba(0,0,0,.5);
 }
 
 .settings-header {
@@ -332,7 +416,8 @@ h1 {
 
     font-size: 23px;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .close-settings {
@@ -343,7 +428,8 @@ h1 {
 
     border-radius: 10px;
 
-    background: #292f3b;
+    background:
+        #292f3b;
 
     color: white;
 
@@ -353,8 +439,14 @@ h1 {
 }
 
 .close-settings:hover {
-    background: #3b4353;
+    background:
+        #3b4353;
 }
+
+
+/* =========================================================
+   SETTINGS ITEM
+   ========================================================= */
 
 .setting {
     margin-bottom: 25px;
@@ -367,7 +459,8 @@ h1 {
 
     margin-bottom: 14px;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .setting-title span:first-child {
@@ -379,15 +472,19 @@ h1 {
 }
 
 .contrast-value {
-    padding: 5px 10px;
+    padding:
+        5px 10px;
 
     border-radius: 8px;
 
-    background: #30384a;
+    background:
+        #30384a;
 
-    color: #aebcff;
+    color:
+        #aebcff;
 
-    font-weight: bold;
+    font-weight:
+        bold;
 }
 
 .contrast-controls {
@@ -406,7 +503,8 @@ h1 {
 
     border-radius: 10px;
 
-    background: #292f3b;
+    background:
+        #292f3b;
 
     color: white;
 
@@ -416,7 +514,8 @@ h1 {
 }
 
 .contrast-button:hover {
-    background: #3a4355;
+    background:
+        #3a4355;
 }
 
 .contrast-slider {
@@ -426,19 +525,22 @@ h1 {
 
     cursor: pointer;
 
-    accent-color: #7185ff;
+    accent-color:
+        #7185ff;
 }
 
 .contrast-description {
     margin-top: 10px;
 
-    color: #8f97a8;
+    color:
+        #8f97a8;
 
     font-size: 13px;
 
     line-height: 1.5;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .reset-button {
@@ -450,7 +552,8 @@ h1 {
 
     border-radius: 11px;
 
-    background: #292f3b;
+    background:
+        #292f3b;
 
     color: white;
 
@@ -460,10 +563,14 @@ h1 {
 }
 
 .reset-button:hover {
-    background: #3a4355;
+    background:
+        #3a4355;
 }
 
-/* ================= READER ================= */
+
+/* =========================================================
+   READER
+   ========================================================= */
 
 #reader {
     display: none;
@@ -474,7 +581,8 @@ h1 {
 
     z-index: 1000;
 
-    background: #080a0e;
+    background:
+        #080a0e;
 }
 
 .reader-header {
@@ -486,11 +594,14 @@ h1 {
 
     gap: 10px;
 
-    padding: 10px 15px;
+    padding:
+        10px 15px;
 
-    background: #171b24;
+    background:
+        #171b24;
 
-    border-bottom: 1px solid #303642;
+    border-bottom:
+        1px solid #303642;
 }
 
 .reader-title {
@@ -504,20 +615,24 @@ h1 {
 
     white-space: nowrap;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
 .reader-button {
     height: 40px;
+
     min-width: 42px;
 
-    padding: 5px 13px;
+    padding:
+        5px 13px;
 
     border: 0;
 
     border-radius: 10px;
 
-    background: #252a35;
+    background:
+        #252a35;
 
     color: white;
 
@@ -527,7 +642,8 @@ h1 {
 }
 
 .reader-button:hover {
-    background: #343b4e;
+    background:
+        #343b4e;
 }
 
 .page-info {
@@ -535,18 +651,24 @@ h1 {
 
     text-align: center;
 
-    color: #c4cad7;
+    color:
+        #c4cad7;
 
-    filter: contrast(var(--text-contrast));
+    filter:
+        contrast(var(--text-contrast));
 }
 
-/* ================= BOOK ================= */
+
+/* =========================================================
+   BOOK AREA
+   ========================================================= */
 
 .book-area {
     position: absolute;
 
     top: 64px;
     bottom: 70px;
+
     left: 0;
     right: 0;
 
@@ -568,7 +690,8 @@ h1 {
 
     gap: 5px;
 
-    min-width: min-content;
+    min-width:
+        min-content;
 }
 
 .page {
@@ -577,9 +700,11 @@ h1 {
     background: white;
 
     box-shadow:
-        0 8px 35px rgba(0,0,0,.55);
+        0 8px 35px
+        rgba(0,0,0,.55);
 
-    max-width: 46vw;
+    max-width:
+        46vw;
 
     max-height:
         calc(100vh - 160px);
@@ -589,7 +714,10 @@ h1 {
     display: none;
 }
 
-/* ================= LOADING ================= */
+
+/* =========================================================
+   LOADING
+   ========================================================= */
 
 .loading {
     position: absolute;
@@ -601,31 +729,88 @@ h1 {
     align-items: center;
     justify-content: center;
 
-    background: #080a0e;
+    background:
+        #080a0e;
 
     z-index: 20;
 
     font-size: 19px;
 }
 
-.error {
-    max-width: 650px;
+.loading-box {
+    width: 300px;
 
-    padding: 30px;
+    max-width:
+        calc(100vw - 40px);
+
+    text-align: center;
+}
+
+.loading-text {
+    margin-bottom: 15px;
+}
+
+.progress {
+    width: 100%;
+
+    height: 8px;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background:
+        #252a35;
+}
+
+.progress-bar {
+    width: 0%;
+
+    height: 100%;
+
+    border-radius: 20px;
+
+    background:
+        #7185ff;
+
+    transition:
+        width .15s;
+}
+
+.loading-percent {
+    margin-top: 10px;
+
+    color:
+        #aeb5c5;
+
+    font-size: 14px;
+}
+
+.error {
+    max-width:
+        650px;
+
+    padding:
+        30px;
 
     text-align: center;
 
     line-height: 1.7;
 
-    color: #ff7373;
+    color:
+        #ff7373;
 }
 
-/* ================= BOTTOM ================= */
+
+/* =========================================================
+   BOTTOM CONTROLS
+   ========================================================= */
 
 .reader-bottom {
     position: absolute;
 
     bottom: 0;
+
     left: 0;
     right: 0;
 
@@ -638,21 +823,25 @@ h1 {
 
     gap: 15px;
 
-    background: #171b24;
+    background:
+        #171b24;
 
-    border-top: 1px solid #303642;
+    border-top:
+        1px solid #303642;
 }
 
 .reader-bottom button {
     height: 42px;
 
-    padding: 0 18px;
+    padding:
+        0 18px;
 
     border: 0;
 
     border-radius: 11px;
 
-    background: #252a35;
+    background:
+        #252a35;
 
     color: white;
 
@@ -662,24 +851,33 @@ h1 {
 }
 
 .reader-bottom button:hover {
-    background: #343b4e;
+    background:
+        #343b4e;
 }
 
 .reader-bottom button:disabled {
-    opacity: .35;
+    opacity:
+        .35;
 
-    cursor: not-allowed;
+    cursor:
+        not-allowed;
 }
 
 .zoom-info {
-    min-width: 70px;
+    min-width:
+        70px;
 
-    text-align: center;
+    text-align:
+        center;
 
-    color: #c4cad7;
+    color:
+        #c4cad7;
 }
 
-/* ================= MOBILE ================= */
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media(max-width:800px) {
 
@@ -690,41 +888,109 @@ h1 {
     .nav {
         font-size: 0;
 
-        text-align: center;
+        text-align:
+            center;
 
-        padding: 14px 5px;
+        padding:
+            14px 5px;
     }
 
     main {
-        padding: 18px;
+        padding:
+            18px;
     }
 
     .search {
-        margin-left: 15px;
+        margin-left:
+            15px;
     }
 
     .logo {
-        font-size: 19px;
+        font-size:
+            19px;
     }
 
     .book {
-        flex-direction: column;
+        flex-direction:
+            column;
     }
 
     .page {
-        max-width: 90vw;
+        max-width:
+            90vw;
 
         max-height:
             calc(100vh - 170px);
     }
 
     .page:nth-child(2) {
-        display: none !important;
+        display:
+            none !important;
     }
 
     .reader-bottom button {
-        padding: 0 10px;
+        padding:
+            0 10px;
     }
+
+    .page-info {
+        min-width:
+            80px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL SCREEN
+   ========================================================= */
+
+@media(max-width:500px) {
+
+    header {
+        padding:
+            0 12px;
+    }
+
+    .logo {
+        font-size:
+            16px;
+    }
+
+    .search {
+        margin-left:
+            8px;
+    }
+
+    .settings-button {
+        width:
+            40px;
+
+        height:
+            40px;
+    }
+
+    .reader-header {
+        gap:
+            5px;
+
+        padding:
+            8px;
+    }
+
+    .reader-button {
+        min-width:
+            38px;
+
+        padding:
+            5px 8px;
+    }
+
+    .page-info {
+        font-size:
+            12px;
+    }
+
 }
 
 </style>
@@ -733,7 +999,9 @@ h1 {
 
 <body>
 
-<!-- ================= HEADER ================= -->
+<!-- =========================================================
+     HEADER
+     ========================================================= -->
 
 <header>
 
@@ -766,12 +1034,15 @@ h1 {
 
 </header>
 
-<!-- ================= LAYOUT ================= -->
+<!-- =========================================================
+     LAYOUT
+     ========================================================= -->
 
 <div class="layout">
 
 ```
 <aside>
+
 
     <div
         class="nav active"
@@ -804,10 +1075,12 @@ h1 {
         5️⃣ 5 класс
     </div>
 
+
 </aside>
 
 
 <main>
+
 
     <h1>
         Учебники
@@ -825,7 +1098,9 @@ h1 {
     >
 
 
-        <!-- МАТЕМАТИКА -->
+        <!-- =================================================
+             МАТЕМАТИКА
+             ================================================= -->
 
         <div
             class="card book-card math 5"
@@ -860,7 +1135,9 @@ h1 {
         </div>
 
 
-        <!-- РУССКИЙ ЯЗЫК -->
+        <!-- =================================================
+             РУССКИЙ ЯЗЫК
+             ================================================= -->
 
         <div
             class="card book-card rus 5"
@@ -902,7 +1179,9 @@ h1 {
 
 </div>
 
-<!-- ================= SETTINGS ================= -->
+<!-- =========================================================
+     SETTINGS
+     ========================================================= -->
 
 <div
     class="settings-overlay"
@@ -936,6 +1215,7 @@ h1 {
 
     <div class="setting">
 
+
         <div class="setting-title">
 
             <span>
@@ -953,6 +1233,7 @@ h1 {
 
 
         <div class="contrast-controls">
+
 
             <button
                 class="contrast-button"
@@ -981,21 +1262,25 @@ h1 {
                 +
             </button>
 
+
         </div>
 
 
         <div class="contrast-description">
 
-            50% — низкая контрастность.
-            100% — обычная.
-            200% — высокая.
+            50% — низкая контрастность.<br>
 
-            <br>
+            100% — обычная контрастность.<br>
+
+            200% — высокая контрастность.
+
+            <br><br>
 
             Настройка автоматически
             сохраняется в браузере.
 
         </div>
+
 
     </div>
 
@@ -1013,16 +1298,20 @@ h1 {
 
 </div>
 
-<!-- ================= PDF READER ================= -->
+<!-- =========================================================
+     PDF READER
+     ========================================================= -->
 
 <div id="reader">
 
 ```
 <div class="reader-header">
 
+
     <button
         class="reader-button"
         onclick="closeBook()"
+        title="Закрыть"
     >
         ←
     </button>
@@ -1047,6 +1336,7 @@ h1 {
     <button
         class="reader-button"
         onclick="zoomOut()"
+        title="Уменьшить"
     >
         −
     </button>
@@ -1055,6 +1345,7 @@ h1 {
     <button
         class="reader-button"
         onclick="zoomIn()"
+        title="Увеличить"
     >
         +
     </button>
@@ -1063,9 +1354,11 @@ h1 {
     <button
         class="reader-button"
         onclick="fullscreenBook()"
+        title="Полный экран"
     >
         ⛶
     </button>
+
 
 </div>
 
@@ -1077,7 +1370,31 @@ h1 {
         class="loading"
         id="loading"
     >
-        📖 Загрузка учебника...
+
+        <div class="loading-box">
+
+            <div class="loading-text">
+                📖 Загрузка учебника...
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+            <div
+                class="loading-percent"
+                id="loadingPercent"
+            >
+                0%
+            </div>
+
+        </div>
+
     </div>
 
 
@@ -1098,6 +1415,7 @@ h1 {
         ></canvas>
 
     </div>
+
 
 </div>
 
@@ -1128,20 +1446,34 @@ h1 {
         Следующие →
     </button>
 
+
 </div>
 ```
 
 </div>
 
-<!-- ================= PDF.JS ================= -->
+<!-- =========================================================
+     PDF.JS
+     ========================================================= -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script
+src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
+</script>
 
 <script>
+
+
+/* =========================================================
+   PDF.JS WORKER
+   ========================================================= */
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
 "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
+
+/* =========================================================
+   GLOBAL VARIABLES
+   ========================================================= */
 
 let pdfDocument = null;
 
@@ -1149,98 +1481,360 @@ let currentPage = 1;
 
 let zoom = 1.0;
 
+let currentPdfPath = "";
 
-/* ================= OPEN BOOK ================= */
+let rendering = false;
 
-async function openBook(path, title) {
+let renderToken = 0;
+
+
+/* =========================================================
+   OPEN BOOK
+   ========================================================= */
+
+async function openBook(
+    path,
+    title
+) {
+
+
+    const reader =
+        document.getElementById(
+            "reader"
+        );
+
+
+    const loading =
+        document.getElementById(
+            "loading"
+        );
+
+
+    reader.style.display =
+        "block";
+
 
     document
-        .getElementById("reader")
-        .style.display = "block";
+        .getElementById(
+            "readerTitle"
+        )
+        .textContent =
+        title;
 
 
-    document
-        .getElementById("readerTitle")
-        .textContent = title;
+    loading.style.display =
+        "flex";
 
 
-    document
-        .getElementById("loading")
-        .style.display = "flex";
+    loading.innerHTML = `
 
+        <div class="loading-box">
 
-    document
-        .getElementById("loading")
-        .innerHTML =
-        "📖 Загрузка учебника...";
+            <div class="loading-text">
+                📖 Загружаем учебник...
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar"
+                ></div>
+
+            </div>
+
+            <div
+                class="loading-percent"
+                id="loadingPercent"
+            >
+                0%
+            </div>
+
+        </div>
+
+    `;
 
 
     currentPage = 1;
 
     zoom = 1.0;
 
+    currentPdfPath = path;
+
+    pdfDocument = null;
+
+    rendering = false;
+
+    renderToken++;
+
+
     updateZoom();
 
 
     try {
 
+
+        /*
+         * encodeURI позволяет корректно
+         * передавать русские папки и пробелы.
+         */
+
+        const pdfUrl =
+            encodeURI(path);
+
+
+        /*
+         * Настройки ускоренной загрузки.
+         *
+         * rangeChunkSize:
+         * размер блока 1 МБ.
+         *
+         * disableAutoFetch:
+         * не скачивать весь PDF заранее.
+         *
+         * disableStream:
+         * потоковая загрузка включена.
+         */
+
+        const loadingTask =
+            pdfjsLib.getDocument({
+
+                url:
+                    pdfUrl,
+
+                rangeChunkSize:
+                    1024 * 1024,
+
+                disableAutoFetch:
+                    true,
+
+                disableStream:
+                    false,
+
+                useWorkerFetch:
+                    true,
+
+                isEvalSupported:
+                    true
+
+            });
+
+
+        /*
+         * Индикатор загрузки.
+         */
+
+        loadingTask.onProgress =
+            function(progress) {
+
+
+                if (
+                    progress.total > 0
+                ) {
+
+
+                    const percent =
+                        Math.round(
+                            progress.loaded /
+                            progress.total *
+                            100
+                        );
+
+
+                    const bar =
+                        document
+                            .getElementById(
+                                "progressBar"
+                            );
+
+
+                    const text =
+                        document
+                            .getElementById(
+                                "loadingPercent"
+                            );
+
+
+                    if (bar) {
+
+                        bar.style.width =
+                            percent + "%";
+
+                    }
+
+
+                    if (text) {
+
+                        text.textContent =
+                            percent + "%";
+
+                    }
+
+                }
+
+            };
+
+
         pdfDocument =
-            await pdfjsLib
-                .getDocument({
-                    url: path
-                })
-                .promise;
+            await loadingTask.promise;
 
 
-        document
-            .getElementById("loading")
-            .style.display = "none";
+        /*
+         * PDF загружен.
+         */
 
+        const bar =
+            document.getElementById(
+                "progressBar"
+            );
+
+
+        const text =
+            document.getElementById(
+                "loadingPercent"
+            );
+
+
+        if (bar)
+            bar.style.width = "100%";
+
+
+        if (text)
+            text.textContent = "100%";
+
+
+        /*
+         * Небольшая пауза,
+         * чтобы браузер успел обновить UI.
+         */
+
+        await new Promise(
+            resolve =>
+                requestAnimationFrame(
+                    resolve
+                )
+        );
+
+
+        loading.style.display =
+            "none";
+
+
+        /*
+         * Рисуем только первые
+         * две страницы.
+         */
 
         await renderPages();
 
 
+        /*
+         * Предзагрузка следующей
+         * страницы в фоне.
+         */
+
+        preloadPage(
+            currentPage + 2
+        );
+
+
     } catch(error) {
 
-        console.error(error);
+
+        console.error(
+            "PDF error:",
+            error
+        );
 
 
-        document
-            .getElementById("loading")
-            .innerHTML = `
+        loading.innerHTML = `
 
-                <div class="error">
+            <div class="error">
 
-                    ❌ Не удалось открыть учебник.
+                ❌ Не удалось открыть учебник.
 
-                    <br><br>
+                <br><br>
 
-                    Проверь путь:
+                <b>
+                    Проверь расположение PDF:
+                </b>
 
-                    <br><br>
+                <br><br>
 
-                    <b>${path}</b>
+                ${path}
 
-                    <br><br>
+                <br><br>
 
-                    Убедись, что PDF находится
-                    в GitHub-репозитории.
+                <small>
+                    ${escapeHtml(
+                        error.message || ""
+                    )}
+                </small>
 
-                </div>
+            </div>
 
-            `;
+        `;
+
+
+        loading.style.display =
+            "flex";
 
     }
 
 }
 
 
-/* ================= RENDER ================= */
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHtml(
+    text
+) {
+
+    return String(text)
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   RENDER TWO PAGES
+   ========================================================= */
 
 async function renderPages() {
 
+
     if (!pdfDocument)
         return;
+
+
+    const token =
+        ++renderToken;
 
 
     const firstPage =
@@ -1251,38 +1845,79 @@ async function renderPages() {
         currentPage + 1;
 
 
+    /*
+     * Первая страница.
+     */
+
     await renderPage(
         firstPage,
-        document.getElementById("page1")
+        document.getElementById(
+            "page1"
+        )
     );
 
+
+    /*
+     * Если пользователь уже
+     * перелистнул страницу,
+     * отменяем старый рендер.
+     */
+
+    if (
+        token !== renderToken
+    )
+        return;
+
+
+    /*
+     * Вторая страница.
+     */
 
     if (
         secondPage <=
         pdfDocument.numPages
     ) {
 
-        document
-            .getElementById("page2")
-            .classList.remove("hidden");
+
+        const page2 =
+            document.getElementById(
+                "page2"
+            );
+
+
+        page2.classList.remove(
+            "hidden"
+        );
 
 
         await renderPage(
             secondPage,
-            document.getElementById("page2")
+            page2
         );
+
 
     } else {
 
+
         document
-            .getElementById("page2")
-            .classList.add("hidden");
+            .getElementById(
+                "page2"
+            )
+            .classList.add(
+                "hidden"
+            );
 
     }
 
 
+    /*
+     * Информация о страницах.
+     */
+
     document
-        .getElementById("pageInfo")
+        .getElementById(
+            "pageInfo"
+        )
         .textContent =
         `${firstPage}–${Math.min(
             secondPage,
@@ -1292,19 +1927,37 @@ async function renderPages() {
 
     updateButtons();
 
+
+    /*
+     * Загружаем следующую страницу
+     * в фоне.
+     */
+
+    preloadPage(
+        currentPage + 2
+    );
+
 }
 
 
-/* ================= RENDER PAGE ================= */
+/* =========================================================
+   RENDER ONE PAGE
+   ========================================================= */
 
 async function renderPage(
     pageNumber,
     canvas
 ) {
 
+
+    if (!pdfDocument)
+        return;
+
+
     if (
         pageNumber < 1 ||
-        pageNumber > pdfDocument.numPages
+        pageNumber >
+        pdfDocument.numPages
     )
         return;
 
@@ -1317,95 +1970,233 @@ async function renderPage(
 
     const viewport =
         page.getViewport({
-            scale: zoom
+
+            scale:
+                zoom
+
         });
 
 
     const context =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d",
+            {
+                alpha:
+                    false
+            }
+        );
 
 
     canvas.width =
-        viewport.width;
+        Math.floor(
+            viewport.width
+        );
 
 
     canvas.height =
-        viewport.height;
+        Math.floor(
+            viewport.height
+        );
+
+
+    /*
+     * Белый фон.
+     */
+
+    context.fillStyle =
+        "#ffffff";
+
+
+    context.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
 
 
     await page.render({
 
-        canvasContext: context,
+        canvasContext:
+            context,
 
-        viewport: viewport
+        viewport:
+            viewport,
+
+        intent:
+            "display"
 
     }).promise;
 
 }
 
 
-/* ================= NEXT ================= */
+/* =========================================================
+   PRELOAD
+   ========================================================= */
 
-async function nextPages() {
+async function preloadPage(
+    pageNumber
+) {
+
 
     if (!pdfDocument)
         return;
 
 
     if (
-        currentPage + 2 <=
+        pageNumber < 1 ||
+        pageNumber >
         pdfDocument.numPages
-    ) {
+    )
+        return;
 
-        currentPage += 2;
 
-        await renderPages();
+    try {
+
+
+        /*
+         * PDF.js запросит нужные
+         * данные страницы.
+         */
+
+        await pdfDocument.getPage(
+            pageNumber
+        );
+
+
+    } catch(error) {
+
+
+        console.warn(
+            "Preload:",
+            error
+        );
 
     }
 
 }
 
 
-/* ================= PREVIOUS ================= */
+/* =========================================================
+   NEXT
+   ========================================================= */
 
-async function previousPages() {
+async function nextPages() {
+
 
     if (!pdfDocument)
         return;
 
 
-    if (currentPage > 1) {
+    if (rendering)
+        return;
 
-        currentPage -= 2;
+
+    if (
+        currentPage + 2 >
+        pdfDocument.numPages
+    )
+        return;
 
 
-        if (currentPage < 1)
-            currentPage = 1;
+    rendering = true;
+
+
+    try {
+
+
+        currentPage += 2;
 
 
         await renderPages();
+
+
+    } finally {
+
+
+        rendering = false;
 
     }
 
 }
 
 
-/* ================= BUTTONS ================= */
+/* =========================================================
+   PREVIOUS
+   ========================================================= */
+
+async function previousPages() {
+
+
+    if (!pdfDocument)
+        return;
+
+
+    if (rendering)
+        return;
+
+
+    if (
+        currentPage <= 1
+    )
+        return;
+
+
+    rendering = true;
+
+
+    try {
+
+
+        currentPage -= 2;
+
+
+        if (
+            currentPage < 1
+        ) {
+
+            currentPage = 1;
+
+        }
+
+
+        await renderPages();
+
+
+    } finally {
+
+
+        rendering = false;
+
+    }
+
+}
+
+
+/* =========================================================
+   UPDATE BUTTONS
+   ========================================================= */
 
 function updateButtons() {
+
 
     if (!pdfDocument)
         return;
 
 
     document
-        .getElementById("previousButton")
+        .getElementById(
+            "previousButton"
+        )
         .disabled =
         currentPage <= 1;
 
 
     document
-        .getElementById("nextButton")
+        .getElementById(
+            "nextButton"
+        )
         .disabled =
         currentPage + 2 >
         pdfDocument.numPages;
@@ -1413,15 +2204,20 @@ function updateButtons() {
 }
 
 
-/* ================= ZOOM ================= */
+/* =========================================================
+   ZOOM IN
+   ========================================================= */
 
 async function zoomIn() {
+
 
     if (!pdfDocument)
         return;
 
 
-    if (zoom >= 2.5)
+    if (
+        zoom >= 2.5
+    )
         return;
 
 
@@ -1434,18 +2230,26 @@ async function zoomIn() {
 
     updateZoom();
 
+
     await renderPages();
 
 }
 
 
+/* =========================================================
+   ZOOM OUT
+   ========================================================= */
+
 async function zoomOut() {
+
 
     if (!pdfDocument)
         return;
 
 
-    if (zoom <= 0.5)
+    if (
+        zoom <= 0.5
+    )
         return;
 
 
@@ -1458,40 +2262,68 @@ async function zoomOut() {
 
     updateZoom();
 
+
     await renderPages();
 
 }
 
 
+/* =========================================================
+   UPDATE ZOOM
+   ========================================================= */
+
 function updateZoom() {
 
-    document
-        .getElementById("zoomInfo")
-        .textContent =
-        Math.round(
-            zoom * 100
-        ) + "%";
+
+    const element =
+        document.getElementById(
+            "zoomInfo"
+        );
+
+
+    if (element) {
+
+
+        element.textContent =
+            Math.round(
+                zoom * 100
+            ) + "%";
+
+    }
 
 }
 
 
-/* ================= CLOSE ================= */
+/* =========================================================
+   CLOSE BOOK
+   ========================================================= */
 
 function closeBook() {
 
+
     document
-        .getElementById("reader")
-        .style.display = "none";
+        .getElementById(
+            "reader"
+        )
+        .style.display =
+        "none";
 
 
-    pdfDocument = null;
+    /*
+     * Отменяем старые рендеры.
+     */
+
+    renderToken++;
 
 }
 
 
-/* ================= FULLSCREEN ================= */
+/* =========================================================
+   FULLSCREEN
+   ========================================================= */
 
 function fullscreenBook() {
+
 
     const reader =
         document.getElementById(
@@ -1503,24 +2335,40 @@ function fullscreenBook() {
         document.fullscreenElement
     ) {
 
-        document.exitFullscreen();
 
-    } else if (
-        reader.requestFullscreen
-    ) {
+        if (
+            document.exitFullscreen
+        ) {
 
-        reader.requestFullscreen();
+            document.exitFullscreen();
+
+        }
+
+
+    } else {
+
+
+        if (
+            reader.requestFullscreen
+        ) {
+
+            reader.requestFullscreen();
+
+        }
 
     }
 
 }
 
 
-/* ================= KEYBOARD ================= */
+/* =========================================================
+   KEYBOARD
+   ========================================================= */
 
 document.addEventListener(
     "keydown",
     async function(e) {
+
 
         const reader =
             document.getElementById(
@@ -1539,6 +2387,8 @@ document.addEventListener(
             e.key === "ArrowRight"
         ) {
 
+            e.preventDefault();
+
             await nextPages();
 
         }
@@ -1547,6 +2397,8 @@ document.addEventListener(
         if (
             e.key === "ArrowLeft"
         ) {
+
+            e.preventDefault();
 
             await previousPages();
 
@@ -1558,6 +2410,8 @@ document.addEventListener(
             e.key === "="
         ) {
 
+            e.preventDefault();
+
             await zoomIn();
 
         }
@@ -1566,6 +2420,8 @@ document.addEventListener(
         if (
             e.key === "-"
         ) {
+
+            e.preventDefault();
 
             await zoomOut();
 
@@ -1585,39 +2441,68 @@ document.addEventListener(
 );
 
 
-/* ================= TOUCH ================= */
+/* =========================================================
+   TOUCH SWIPE
+   ========================================================= */
 
 let touchStartX = 0;
 
 
 document
-    .getElementById("reader")
+    .getElementById(
+        "reader"
+    )
     .addEventListener(
         "touchstart",
         function(e) {
 
-            touchStartX =
-                e.changedTouches[0]
-                    .screenX;
 
+            if (
+                e.changedTouches.length
+            ) {
+
+                touchStartX =
+                    e.changedTouches[0]
+                        .screenX;
+
+            }
+
+        },
+        {
+            passive:
+                true
         }
     );
 
 
 document
-    .getElementById("reader")
+    .getElementById(
+        "reader"
+    )
     .addEventListener(
         "touchend",
         async function(e) {
+
+
+            if (
+                !e.changedTouches.length
+            )
+                return;
+
 
             const touchEndX =
                 e.changedTouches[0]
                     .screenX;
 
 
+            const difference =
+                touchEndX -
+                touchStartX;
+
+
             if (
-                touchEndX <
-                touchStartX - 50
+                difference <
+                -50
             ) {
 
                 await nextPages();
@@ -1626,49 +2511,75 @@ document
 
 
             if (
-                touchEndX >
-                touchStartX + 50
+                difference >
+                50
             ) {
 
                 await previousPages();
 
             }
 
+        },
+        {
+            passive:
+                true
         }
     );
 
+
 </script>
 
-<!-- ================= FILTER + SETTINGS ================= -->
+<!-- =========================================================
+     SEARCH / FILTER / SETTINGS
+     ========================================================= -->
 
 <script>
 
-/* ================= FILTER ================= */
 
-let currentFilter = "all";
+/* =========================================================
+   CURRENT FILTER
+   ========================================================= */
 
+let currentFilter =
+    "all";
+
+
+/* =========================================================
+   FILTER BOOKS
+   ========================================================= */
 
 function filterBooks(
     filter,
     element
 ) {
 
-    currentFilter = filter;
+
+    currentFilter =
+        filter;
 
 
     document
-        .querySelectorAll(".nav")
+        .querySelectorAll(
+            ".nav"
+        )
         .forEach(
-            item =>
-            item.classList.remove(
-                "active"
-            )
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
         );
 
 
-    element.classList.add(
-        "active"
-    );
+    if (element) {
+
+        element.classList.add(
+            "active"
+        );
+
+    }
 
 
     searchBooks();
@@ -1676,67 +2587,121 @@ function filterBooks(
 }
 
 
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
 function searchBooks() {
 
+
+    const input =
+        document.getElementById(
+            "search"
+        );
+
+
     const query =
-        document
-            .getElementById("search")
+        input
             .value
             .toLowerCase()
             .trim();
 
 
     document
-        .querySelectorAll(".book-card")
-        .forEach(card => {
-
-            const name =
-                card.dataset.name
-                    .toLowerCase();
-
-
-            const filterOK =
-                currentFilter === "all" ||
-                card.classList.contains(
-                    currentFilter
-                );
+        .querySelectorAll(
+            ".book-card"
+        )
+        .forEach(
+            card => {
 
 
-            const searchOK =
-                name.includes(query);
+                const name =
+                    card
+                        .dataset
+                        .name
+                        .toLowerCase();
 
 
-            card.style.display =
-                filterOK && searchOK
-                    ? "block"
-                    : "none";
+                const filterOK =
+                    currentFilter ===
+                        "all" ||
 
-        });
+                    card.classList.contains(
+                        currentFilter
+                    );
+
+
+                const searchOK =
+                    name.includes(
+                        query
+                    );
+
+
+                if (
+                    filterOK &&
+                    searchOK
+                ) {
+
+                    card.style.display =
+                        "block";
+
+                } else {
+
+                    card.style.display =
+                        "none";
+
+                }
+
+            }
+        );
 
 }
 
 
-/* ================= SETTINGS ================= */
+/* =========================================================
+   OPEN SETTINGS
+   ========================================================= */
 
 function openSettings() {
 
+
     document
-        .getElementById("settingsOverlay")
-        .classList.add("show");
+        .getElementById(
+            "settingsOverlay"
+        )
+        .classList.add(
+            "show"
+        );
 
 }
 
+
+/* =========================================================
+   CLOSE SETTINGS
+   ========================================================= */
 
 function closeSettings() {
 
+
     document
-        .getElementById("settingsOverlay")
-        .classList.remove("show");
+        .getElementById(
+            "settingsOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
 
 }
 
 
-function closeSettingsOutside(event) {
+/* =========================================================
+   CLOSE SETTINGS BY CLICKING OUTSIDE
+   ========================================================= */
+
+function closeSettingsOutside(
+    event
+) {
+
 
     if (
         event.target.id ===
@@ -1750,16 +2715,34 @@ function closeSettingsOutside(event) {
 }
 
 
-/* ================= CONTRAST ================= */
+/* =========================================================
+   SET CONTRAST
+   ========================================================= */
 
-function setContrast(value) {
+function setContrast(
+    value
+) {
+
+
+    value =
+        Number(value);
+
+
+    if (
+        Number.isNaN(value)
+    ) {
+
+        value = 100;
+
+    }
+
 
     value =
         Math.max(
             50,
             Math.min(
                 200,
-                Number(value)
+                value
             )
         );
 
@@ -1773,31 +2756,65 @@ function setContrast(value) {
         );
 
 
-    document
-        .getElementById(
+    const valueElement =
+        document.getElementById(
             "contrastValue"
-        )
-        .textContent =
-        value + "%";
+        );
 
 
-    document
-        .getElementById(
+    if (valueElement) {
+
+        valueElement.textContent =
+            value + "%";
+
+    }
+
+
+    const slider =
+        document.getElementById(
             "contrastSlider"
-        )
-        .value =
-        value;
+        );
 
 
-    localStorage.setItem(
-        "textContrast",
-        value
-    );
+    if (slider) {
+
+        slider.value =
+            value;
+
+    }
+
+
+    /*
+     * Сохраняем настройку.
+     */
+
+    try {
+
+        localStorage.setItem(
+            "textContrast",
+            String(value)
+        );
+
+    } catch(error) {
+
+        console.warn(
+            "LocalStorage:",
+            error
+        );
+
+    }
 
 }
 
 
-function changeContrast(amount) {
+/* =========================================================
+   CHANGE CONTRAST
+   ========================================================= */
+
+function changeContrast(
+    amount
+) {
+
 
     const slider =
         document.getElementById(
@@ -1806,10 +2823,13 @@ function changeContrast(amount) {
 
 
     let value =
-        Number(slider.value);
+        Number(
+            slider.value
+        );
 
 
-    value += amount;
+    value +=
+        amount;
 
 
     value =
@@ -1822,29 +2842,58 @@ function changeContrast(amount) {
         );
 
 
-    setContrast(value);
+    setContrast(
+        value
+    );
 
 }
 
+
+/* =========================================================
+   RESET SETTINGS
+   ========================================================= */
 
 function resetSettings() {
 
-    setContrast(100);
+
+    setContrast(
+        100
+    );
 
 }
 
 
-/* ================= LOAD SETTINGS ================= */
+/* =========================================================
+   LOAD SAVED SETTINGS
+   ========================================================= */
 
 (function loadSettings() {
 
-    const saved =
-        localStorage.getItem(
-            "textContrast"
+
+    let saved =
+        null;
+
+
+    try {
+
+        saved =
+            localStorage.getItem(
+                "textContrast"
+            );
+
+    } catch(error) {
+
+        console.warn(
+            "LocalStorage:",
+            error
         );
 
+    }
 
-    if (saved !== null) {
+
+    if (
+        saved !== null
+    ) {
 
         setContrast(
             Number(saved)
@@ -1852,22 +2901,28 @@ function resetSettings() {
 
     } else {
 
-        setContrast(100);
+        setContrast(
+            100
+        );
 
     }
 
 })();
 
 
-/* ================= ESC ================= */
+/* =========================================================
+   ESC CLOSE SETTINGS
+   ========================================================= */
 
 document.addEventListener(
     "keydown",
     function(e) {
 
+
         if (
             e.key === "Escape"
         ) {
+
 
             const overlay =
                 document.getElementById(
@@ -1889,6 +2944,7 @@ document.addEventListener(
 
     }
 );
+
 
 </script>
 
