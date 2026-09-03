@@ -1,1187 +1,758 @@
 <!DOCTYPE html>
-
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-<title>Учебники 5–6</title>
+<title>Учебники 5–6 — Beta</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <style>
-
-/* =========================================================
-   ОСНОВНЫЕ НАСТРОЙКИ
-   ========================================================= */
-
-:root {
-    --text-contrast: 1;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-
-    width: 100%;
-    height: 100%;
-
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
-
-    background: #0d1017;
-    color: white;
-}
-
-body {
-    overflow: hidden;
-}
-
-
-/* =========================================================
-   HEADER
-   ========================================================= */
-
-header {
-    height: 70px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 0 25px;
-
-    background: #171b24;
-
-    border-bottom:
-        1px solid #303642;
+:root{
+    --blue:#1687e8;
+    --blue2:#4db4ff;
+    --light:#f4f9ff;
+    --border:#d9e8f5;
+    --text:#16324a;
+    --muted:#668198;
+    --card:#ffffff;
+    --shadow:0 8px 30px rgba(30,120,190,.12);
+    --contrast:1;
 }
-
-.logo {
-    font-size: 25px;
-
-    font-weight: bold;
 
-    white-space: nowrap;
+*{box-sizing:border-box}
 
-    filter:
-        contrast(var(--text-contrast));
+html,body{
+    margin:0;
+    width:100%;
+    height:100%;
+    font-family:Arial,Helvetica,sans-serif;
+    background:var(--light);
+    color:var(--text);
 }
 
-.logo span {
-    color: #7185ff;
+body{
+    overflow:hidden;
+    filter:contrast(var(--contrast));
 }
 
+/* HEADER */
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
-
-.search {
-    width: 100%;
-    max-width: 550px;
-
-    margin-left: 35px;
+header{
+    height:72px;
+    display:flex;
+    align-items:center;
+    padding:0 25px;
+    background:white;
+    border-bottom:1px solid var(--border);
+    box-shadow:0 2px 12px rgba(20,100,160,.07);
 }
-
-.search input {
-    width: 100%;
-
-    height: 44px;
-
-    padding:
-        0 18px;
-
-    border:
-        1px solid #343a49;
-
-    outline: none;
 
-    border-radius: 14px;
-
-    background: #252a35;
-
-    color: white;
-
-    font-size: 15px;
-
-    filter:
-        contrast(var(--text-contrast));
+.logo{
+    font-size:24px;
+    font-weight:700;
+    white-space:nowrap;
+    color:#173c59;
 }
 
-.search input::placeholder {
-    color: #9ca4b5;
+.logo span{
+    color:var(--blue);
 }
 
-.search input:focus {
-    border-color: #7185ff;
+.beta{
+    margin-left:10px;
+    padding:5px 9px;
+    border-radius:8px;
+    background:#e8f5ff;
+    color:#0876ca;
+    font-size:11px;
+    font-weight:bold;
+    border:1px solid #c8e8ff;
 }
-
-
-/* =========================================================
-   SETTINGS BUTTON
-   ========================================================= */
-
-.settings-button {
-    margin-left: auto;
-
-    width: 45px;
-    height: 45px;
-
-    border: 0;
-
-    border-radius: 13px;
-
-    background: #252a35;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 21px;
 
-    transition:
-        .15s;
+/* SEARCH */
 
-    filter:
-        contrast(var(--text-contrast));
+.search{
+    flex:1;
+    max-width:560px;
+    margin-left:35px;
 }
 
-.settings-button:hover {
-    background: #343b4e;
-
-    transform:
-        rotate(20deg);
+.search input{
+    width:100%;
+    height:44px;
+    border:1px solid var(--border);
+    border-radius:13px;
+    outline:none;
+    padding:0 17px;
+    background:#f7fbff;
+    color:var(--text);
+    font-size:15px;
 }
-
-
-/* =========================================================
-   MAIN LAYOUT
-   ========================================================= */
 
-.layout {
-    display: flex;
-
-    width: 100%;
-    height:
-        calc(100vh - 70px);
+.search input:focus{
+    border-color:var(--blue2);
+    background:white;
+    box-shadow:0 0 0 3px rgba(22,135,232,.08);
 }
-
-aside {
-    width: 235px;
-
-    flex-shrink: 0;
-
-    padding:
-        18px 12px;
 
-    background: #151920;
-
-    border-right:
-        1px solid #303642;
+.settings-button{
+    margin-left:auto;
+    width:44px;
+    height:44px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:white;
+    color:#276083;
+    cursor:pointer;
+    font-size:20px;
 }
-
-
-/* =========================================================
-   NAVIGATION
-   ========================================================= */
-
-.nav {
-    padding:
-        14px 16px;
-
-    margin-bottom: 8px;
-
-    border-radius: 12px;
-
-    cursor: pointer;
-
-    transition:
-        .15s;
 
-    filter:
-        contrast(var(--text-contrast));
+.settings-button:hover{
+    background:#edf7ff;
 }
 
-.nav:hover {
-    background: #252c40;
-}
+/* LAYOUT */
 
-.nav.active {
-    background: #303b68;
+.layout{
+    display:flex;
+    width:100%;
+    height:calc(100vh - 72px);
 }
-
-
-/* =========================================================
-   MAIN
-   ========================================================= */
 
-main {
-    flex: 1;
+/* SIDEBAR */
 
-    padding: 30px;
-
-    overflow-y: auto;
+aside{
+    width:230px;
+    flex-shrink:0;
+    padding:18px 12px;
+    background:white;
+    border-right:1px solid var(--border);
 }
-
-h1 {
-    margin:
-        0 0 8px;
 
-    font-size: 32px;
-
-    filter:
-        contrast(var(--text-contrast));
+.nav{
+    padding:13px 15px;
+    margin-bottom:7px;
+    border-radius:11px;
+    cursor:pointer;
+    color:#527087;
+    font-weight:500;
 }
-
-.subtitle {
-    color: #9299aa;
 
-    margin-bottom: 25px;
-
-    filter:
-        contrast(var(--text-contrast));
+.nav:hover{
+    background:#edf7ff;
+    color:#0876ca;
 }
-
-
-/* =========================================================
-   BOOK GRID
-   ========================================================= */
 
-.grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fill,
-            minmax(270px, 1fr)
-        );
-
-    gap: 22px;
+.nav.active{
+    background:#e2f3ff;
+    color:#0876ca;
+    font-weight:bold;
 }
-
-.card {
-    background: #1a1f29;
-
-    border:
-        1px solid #303642;
 
-    border-radius: 20px;
+/* MAIN */
 
-    padding: 23px;
-
-    transition:
-        .2s;
+main{
+    flex:1;
+    padding:32px;
+    overflow-y:auto;
 }
-
-.card:hover {
-    transform:
-        translateY(-4px);
-
-    border-color:
-        #7185ff;
 
-    box-shadow:
-        0 10px 30px
-        rgba(0,0,0,.25);
+h1{
+    margin:0;
+    font-size:32px;
+    color:#143b58;
 }
 
-.card h2,
-.card p,
-.card button {
-    filter:
-        contrast(var(--text-contrast));
+.subtitle{
+    margin-top:7px;
+    margin-bottom:28px;
+    color:var(--muted);
 }
-
-.icon {
-    width: 75px;
-    height: 75px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 18px;
 
-    background: #252c40;
+/* CARDS */
 
-    font-size: 42px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:22px;
 }
 
-.card h2 {
-    margin:
-        16px 0 6px;
+.card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:19px;
+    padding:23px;
+    box-shadow:var(--shadow);
+    transition:.2s;
 }
 
-.card p {
-    color: #aeb5c5;
-
-    min-height: 40px;
+.card:hover{
+    transform:translateY(-4px);
+    border-color:#9bd4fa;
+    box-shadow:0 14px 35px rgba(30,120,190,.16);
 }
-
-.open-button {
-    border: 0;
-
-    border-radius: 11px;
-
-    padding:
-        12px 18px;
-
-    background:
-        #647cff;
-
-    color: white;
-
-    cursor: pointer;
 
-    font-size: 15px;
-
-    transition:
-        .15s;
+.icon{
+    width:70px;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:17px;
+    background:#e8f6ff;
+    font-size:39px;
 }
 
-.open-button:hover {
-    background:
-        #5169e5;
+.card h2{
+    margin:16px 0 7px;
+    color:#173d59;
 }
-
-
-/* =========================================================
-   SETTINGS OVERLAY
-   ========================================================= */
-
-.settings-overlay {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 2000;
 
-    background:
-        rgba(0,0,0,.65);
-
-    align-items: center;
-    justify-content: center;
+.card p{
+    color:#6c8497;
+    min-height:38px;
 }
 
-.settings-overlay.show {
-    display: flex;
+.open-button{
+    border:0;
+    border-radius:10px;
+    padding:12px 19px;
+    background:linear-gradient(135deg,#1687e8,#4baef0);
+    color:white;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:bold;
+    box-shadow:0 5px 15px rgba(22,135,232,.2);
 }
-
-
-/* =========================================================
-   SETTINGS WINDOW
-   ========================================================= */
-
-.settings {
-    width: 430px;
-
-    max-width:
-        calc(100vw - 30px);
-
-    background:
-        #1a1f29;
-
-    border:
-        1px solid #3a4150;
 
-    border-radius: 20px;
-
-    padding: 25px;
-
-    box-shadow:
-        0 20px 70px
-        rgba(0,0,0,.5);
+.open-button:hover{
+    background:linear-gradient(135deg,#0876d1,#319ee7);
 }
-
-.settings-header {
-    display: flex;
 
-    align-items: center;
+/* SETTINGS */
 
-    margin-bottom: 25px;
+.settings-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+    background:rgba(18,57,85,.35);
+    backdrop-filter:blur(5px);
 }
 
-.settings-header h2 {
-    flex: 1;
-
-    margin: 0;
-
-    font-size: 23px;
-
-    filter:
-        contrast(var(--text-contrast));
+.settings-overlay.show{
+    display:flex;
 }
-
-.close-settings {
-    width: 38px;
-    height: 38px;
 
-    border: 0;
-
-    border-radius: 10px;
-
-    background:
-        #292f3b;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 20px;
+.settings{
+    width:430px;
+    max-width:calc(100vw - 30px);
+    padding:25px;
+    background:white;
+    border:1px solid var(--border);
+    border-radius:20px;
+    box-shadow:0 20px 70px rgba(30,100,150,.25);
 }
 
-.close-settings:hover {
-    background:
-        #3b4353;
+.settings-header{
+    display:flex;
+    align-items:center;
+    margin-bottom:25px;
 }
-
 
-/* =========================================================
-   SETTINGS ITEM
-   ========================================================= */
-
-.setting {
-    margin-bottom: 25px;
+.settings-header h2{
+    flex:1;
+    margin:0;
 }
-
-.setting-title {
-    display: flex;
 
-    align-items: center;
-
-    margin-bottom: 14px;
-
-    filter:
-        contrast(var(--text-contrast));
+.close-settings{
+    width:38px;
+    height:38px;
+    border:0;
+    border-radius:10px;
+    background:#edf7ff;
+    color:#28709c;
+    cursor:pointer;
+    font-size:20px;
 }
-
-.setting-title span:first-child {
-    flex: 1;
 
-    font-size: 16px;
-
-    font-weight: bold;
+.setting{
+    margin-bottom:24px;
 }
-
-.contrast-value {
-    padding:
-        5px 10px;
-
-    border-radius: 8px;
-
-    background:
-        #30384a;
 
-    color:
-        #aebcff;
-
-    font-weight:
-        bold;
+.setting-title{
+    display:flex;
+    margin-bottom:13px;
+    font-weight:bold;
 }
-
-.contrast-controls {
-    display: flex;
-
-    align-items: center;
 
-    gap: 10px;
+.setting-title span:first-child{
+    flex:1;
 }
-
-.contrast-button {
-    width: 42px;
-    height: 42px;
-
-    border: 0;
-
-    border-radius: 10px;
-
-    background:
-        #292f3b;
 
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 20px;
+.contrast-value{
+    padding:4px 9px;
+    border-radius:7px;
+    background:#e5f4ff;
+    color:#0876ca;
 }
 
-.contrast-button:hover {
-    background:
-        #3a4355;
+.contrast-controls{
+    display:flex;
+    align-items:center;
+    gap:9px;
 }
-
-.contrast-slider {
-    flex: 1;
 
-    height: 6px;
-
-    cursor: pointer;
-
-    accent-color:
-        #7185ff;
+.contrast-button{
+    width:40px;
+    height:40px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    background:#f5faff;
+    color:#26719d;
+    cursor:pointer;
+    font-size:20px;
 }
-
-.contrast-description {
-    margin-top: 10px;
-
-    color:
-        #8f97a8;
 
-    font-size: 13px;
-
-    line-height: 1.5;
-
-    filter:
-        contrast(var(--text-contrast));
+.contrast-slider{
+    flex:1;
+    accent-color:var(--blue);
 }
-
-.reset-button {
-    width: 100%;
-
-    height: 44px;
-
-    border: 0;
-
-    border-radius: 11px;
-
-    background:
-        #292f3b;
 
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 14px;
+.contrast-description{
+    margin-top:10px;
+    color:#6b8295;
+    font-size:13px;
+    line-height:1.5;
 }
 
-.reset-button:hover {
-    background:
-        #3a4355;
+.reset-button{
+    width:100%;
+    height:43px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    background:#f5faff;
+    color:#39718f;
+    cursor:pointer;
 }
-
-
-/* =========================================================
-   READER
-   ========================================================= */
-
-#reader {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
 
-    z-index: 1000;
+/* READER */
 
-    background:
-        #080a0e;
+#reader{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    background:#eef7ff;
 }
 
-.reader-header {
-    height: 64px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-
-    padding:
-        10px 15px;
-
-    background:
-        #171b24;
-
-    border-bottom:
-        1px solid #303642;
+.reader-header{
+    height:66px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:10px 15px;
+    background:white;
+    border-bottom:1px solid #d2e6f5;
+    box-shadow:0 2px 12px rgba(20,100,160,.08);
 }
-
-.reader-title {
-    flex: 1;
 
-    font-weight: bold;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-
-    white-space: nowrap;
-
-    filter:
-        contrast(var(--text-contrast));
+.reader-title{
+    flex:1;
+    font-weight:bold;
+    color:#183e5a;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
-
-.reader-button {
-    height: 40px;
-
-    min-width: 42px;
-
-    padding:
-        5px 13px;
 
-    border: 0;
-
-    border-radius: 10px;
-
-    background:
-        #252a35;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 15px;
+.reader-button{
+    height:40px;
+    min-width:42px;
+    padding:5px 13px;
+    border:1px solid #d5e7f4;
+    border-radius:10px;
+    background:#f5faff;
+    color:#1d648d;
+    cursor:pointer;
+    font-size:15px;
 }
 
-.reader-button:hover {
-    background:
-        #343b4e;
+.reader-button:hover{
+    background:#e5f4ff;
+    color:#0876ca;
 }
-
-.page-info {
-    min-width: 120px;
-
-    text-align: center;
-
-    color:
-        #c4cad7;
 
-    filter:
-        contrast(var(--text-contrast));
+.page-info{
+    min-width:120px;
+    text-align:center;
+    color:#527087;
+    font-weight:bold;
 }
 
+/* BOOK */
 
-/* =========================================================
-   BOOK AREA
-   ========================================================= */
-
-.book-area {
-    position: absolute;
-
-    top: 64px;
-    bottom: 70px;
-
-    left: 0;
-    right: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    overflow: auto;
-
-    padding: 20px;
+.book-area{
+    position:absolute;
+    top:66px;
+    bottom:70px;
+    left:0;
+    right:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:auto;
+    padding:20px;
 }
 
-.book {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 5px;
-
-    min-width:
-        min-content;
+.book{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
 }
-
-.page {
-    display: block;
-
-    background: white;
-
-    box-shadow:
-        0 8px 35px
-        rgba(0,0,0,.55);
-
-    max-width:
-        46vw;
 
-    max-height:
-        calc(100vh - 160px);
+.page{
+    display:block;
+    background:white;
+    box-shadow:0 8px 35px rgba(28,85,120,.25);
+    max-width:46vw;
+    max-height:calc(100vh - 160px);
 }
 
-.page.hidden {
-    display: none;
+.page.hidden{
+    display:none;
 }
 
+/* LOADING */
 
-/* =========================================================
-   LOADING
-   ========================================================= */
-
-.loading {
-    position: absolute;
-
-    inset: 0;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        #080a0e;
-
-    z-index: 20;
-
-    font-size: 19px;
+.loading{
+    position:absolute;
+    inset:0;
+    z-index:20;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#eef7ff;
 }
 
-.loading-box {
-    width: 300px;
-
-    max-width:
-        calc(100vw - 40px);
-
-    text-align: center;
+.loading-box{
+    width:320px;
+    max-width:calc(100vw - 40px);
+    text-align:center;
+    color:#315b76;
 }
 
-.loading-text {
-    margin-bottom: 15px;
+.loading-text{
+    margin-bottom:15px;
+    font-weight:bold;
 }
-
-.progress {
-    width: 100%;
 
-    height: 8px;
-
-    overflow: hidden;
-
-    border-radius: 20px;
-
-    background:
-        #252a35;
+.progress{
+    height:8px;
+    width:100%;
+    overflow:hidden;
+    border-radius:20px;
+    background:#dcecf8;
 }
-
-.progress-bar {
-    width: 0%;
 
-    height: 100%;
-
-    border-radius: 20px;
-
-    background:
-        #7185ff;
-
-    transition:
-        width .15s;
+.progress-bar{
+    width:0;
+    height:100%;
+    border-radius:20px;
+    background:linear-gradient(90deg,#1687e8,#55baff);
+    transition:width .15s;
 }
 
-.loading-percent {
-    margin-top: 10px;
-
-    color:
-        #aeb5c5;
-
-    font-size: 14px;
+.loading-percent{
+    margin-top:10px;
+    color:#67849a;
+    font-size:13px;
 }
-
-.error {
-    max-width:
-        650px;
-
-    padding:
-        30px;
 
-    text-align: center;
-
-    line-height: 1.7;
-
-    color:
-        #ff7373;
+.error{
+    max-width:650px;
+    padding:30px;
+    text-align:center;
+    line-height:1.7;
+    color:#c44747;
 }
-
-
-/* =========================================================
-   BOTTOM CONTROLS
-   ========================================================= */
-
-.reader-bottom {
-    position: absolute;
-
-    bottom: 0;
-
-    left: 0;
-    right: 0;
 
-    height: 70px;
+/* BOTTOM */
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 15px;
-
-    background:
-        #171b24;
-
-    border-top:
-        1px solid #303642;
+.reader-bottom{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    background:white;
+    border-top:1px solid #d2e6f5;
 }
-
-.reader-bottom button {
-    height: 42px;
-
-    padding:
-        0 18px;
-
-    border: 0;
 
-    border-radius: 11px;
-
-    background:
-        #252a35;
-
-    color: white;
-
-    cursor: pointer;
-
-    font-size: 14px;
+.reader-bottom button{
+    height:42px;
+    padding:0 18px;
+    border:1px solid #d5e7f4;
+    border-radius:10px;
+    background:#f5faff;
+    color:#246489;
+    cursor:pointer;
+    font-weight:bold;
 }
 
-.reader-bottom button:hover {
-    background:
-        #343b4e;
+.reader-bottom button:hover{
+    background:#e5f4ff;
 }
 
-.reader-bottom button:disabled {
-    opacity:
-        .35;
-
-    cursor:
-        not-allowed;
+.reader-bottom button:disabled{
+    opacity:.35;
+    cursor:not-allowed;
 }
-
-.zoom-info {
-    min-width:
-        70px;
 
-    text-align:
-        center;
-
-    color:
-        #c4cad7;
+.zoom-info{
+    min-width:70px;
+    text-align:center;
+    color:#527087;
 }
-
 
-/* =========================================================
-   MOBILE
-   ========================================================= */
+/* MOBILE */
 
-@media(max-width:800px) {
+@media(max-width:800px){
 
-    aside {
-        width: 65px;
+    aside{
+        width:65px;
     }
 
-    .nav {
-        font-size: 0;
-
-        text-align:
-            center;
-
-        padding:
-            14px 5px;
+    .nav{
+        font-size:0;
+        text-align:center;
+        padding:14px 4px;
     }
 
-    main {
-        padding:
-            18px;
+    main{
+        padding:20px;
     }
 
-    .search {
-        margin-left:
-            15px;
+    .search{
+        margin-left:15px;
     }
 
-    .logo {
-        font-size:
-            19px;
+    .logo{
+        font-size:18px;
     }
 
-    .book {
-        flex-direction:
-            column;
+    .book{
+        flex-direction:column;
     }
 
-    .page {
-        max-width:
-            90vw;
-
-        max-height:
-            calc(100vh - 170px);
+    .page{
+        max-width:90vw;
+        max-height:calc(100vh - 170px);
     }
 
-    .page:nth-child(2) {
-        display:
-            none !important;
-    }
-
-    .reader-bottom button {
-        padding:
-            0 10px;
-    }
-
-    .page-info {
-        min-width:
-            80px;
+    #page2{
+        display:none!important;
     }
 
 }
 
+@media(max-width:500px){
 
-/* =========================================================
-   VERY SMALL SCREEN
-   ========================================================= */
-
-@media(max-width:500px) {
-
-    header {
-        padding:
-            0 12px;
+    header{
+        padding:0 10px;
     }
 
-    .logo {
-        font-size:
-            16px;
+    .logo{
+        font-size:15px;
     }
 
-    .search {
-        margin-left:
-            8px;
+    .beta{
+        display:none;
     }
 
-    .settings-button {
-        width:
-            40px;
-
-        height:
-            40px;
+    .search{
+        margin-left:8px;
     }
 
-    .reader-header {
-        gap:
-            5px;
-
-        padding:
-            8px;
+    .search input{
+        height:40px;
     }
 
-    .reader-button {
-        min-width:
-            38px;
-
-        padding:
-            5px 8px;
+    .settings-button{
+        width:40px;
+        height:40px;
     }
 
-    .page-info {
-        font-size:
-            12px;
+    .reader-header{
+        padding:8px;
     }
 
+    .reader-button{
+        min-width:38px;
+        padding:5px 8px;
+    }
+
+    .page-info{
+        min-width:75px;
+        font-size:12px;
+    }
+
+    .reader-bottom{
+        gap:7px;
+    }
+
+    .reader-bottom button{
+        padding:0 9px;
+        font-size:12px;
+    }
 }
-
 </style>
-
 </head>
 
 <body>
 
-<!-- =========================================================
-     HEADER
-     ========================================================= -->
-
 <header>
 
-```
-<div class="logo">
-    📚 Учебники <span>5–6</span>
-</div>
+    <div class="logo">
+        📚 Учебники <span>5–6</span>
+    </div>
 
+    <div class="beta">
+        BETA
+    </div>
 
-<div class="search">
+    <div class="search">
+        <input
+            id="search"
+            type="text"
+            placeholder="🔎 Найти учебник..."
+            oninput="searchBooks()"
+        >
+    </div>
 
-    <input
-        id="search"
-        type="text"
-        placeholder="🔎 Поиск учебника..."
-        oninput="searchBooks()"
+    <button
+        class="settings-button"
+        onclick="openSettings()"
+        title="Настройки"
     >
-
-</div>
-
-
-<button
-    class="settings-button"
-    onclick="openSettings()"
-    title="Настройки"
->
-    ⚙️
-</button>
-```
+        ⚙️
+    </button>
 
 </header>
 
-<!-- =========================================================
-     LAYOUT
-     ========================================================= -->
-
 <div class="layout">
 
-```
-<aside>
-
-
-    <div
-        class="nav active"
-        onclick="filterBooks('all', this)"
-    >
-        🏠 Главная
-    </div>
-
-
-    <div
-        class="nav"
-        onclick="filterBooks('math', this)"
-    >
-        📐 Математика
-    </div>
-
-
-    <div
-        class="nav"
-        onclick="filterBooks('rus', this)"
-    >
-        📘 Русский язык
-    </div>
-
-
-    <div
-        class="nav"
-        onclick="filterBooks('5', this)"
-    >
-        5️⃣ 5 класс
-    </div>
-
-
-</aside>
-
-
-<main>
-
-
-    <h1>
-        Учебники
-    </h1>
-
-
-    <div class="subtitle">
-        Учебники для 5 класса
-    </div>
-
-
-    <div
-        class="grid"
-        id="books"
-    >
-
-
-        <!-- =================================================
-             МАТЕМАТИКА
-             ================================================= -->
+    <aside>
 
         <div
-            class="card book-card math 5"
-            data-name="Математика 5 класс"
+            class="nav active"
+            onclick="filterBooks('all',this)"
+        >
+            🏠 Главная
+        </div>
+
+        <div
+            class="nav"
+            onclick="filterBooks('math',this)"
+        >
+            📐 Математика
+        </div>
+
+        <div
+            class="nav"
+            onclick="filterBooks('rus',this)"
+        >
+            📘 Русский язык
+        </div>
+
+        <div
+            class="nav"
+            onclick="filterBooks('5',this)"
+        >
+            5️⃣ 5 класс
+        </div>
+
+    </aside>
+
+    <main>
+
+        <h1>Учебники</h1>
+
+        <div class="subtitle">
+            Электронная библиотека · 5 класс
+        </div>
+
+        <div
+            class="grid"
+            id="books"
         >
 
-            <div class="icon">
-                📐
+            <div
+                class="card book-card math 5"
+                data-name="Математика 5 класс"
+            >
+
+                <div class="icon">📐</div>
+
+                <h2>Математика</h2>
+
+                <p>
+                    5 класс · 1 часть
+                </p>
+
+                <button
+                    class="open-button"
+                    onclick="openBook(
+                        'учебники/математика/Matematika_5_klass_1_chast_.pdf',
+                        'Математика — 5 класс'
+                    )"
+                >
+                    📖 Открыть учебник
+                </button>
+
             </div>
 
-
-            <h2>
-                Математика
-            </h2>
-
-
-            <p>
-                5 класс · 1 часть
-            </p>
-
-
-            <button
-                class="open-button"
-                onclick="openBook(
-                    'учебники/математика/Matematika_5_klass_1_chast_.pdf',
-                    'Математика — 5 класс'
-                )"
+            <div
+                class="card book-card rus 5"
+                data-name="Русский язык 5 класс"
             >
-                📖 Открыть
-            </button>
+
+                <div class="icon">📘</div>
+
+                <h2>Русский язык</h2>
+
+                <p>
+                    5 класс · 1 часть
+                </p>
+
+                <button
+                    class="open-button"
+                    onclick="openBook(
+                        'учебники/русский язык/Russkiy_yazyk_5_klass_1_chast_.pdf',
+                        'Русский язык — 5 класс'
+                    )"
+                >
+                    📖 Открыть учебник
+                </button>
+
+            </div>
 
         </div>
 
-
-        <!-- =================================================
-             РУССКИЙ ЯЗЫК
-             ================================================= -->
-
-        <div
-            class="card book-card rus 5"
-            data-name="Русский язык 5 класс"
-        >
-
-            <div class="icon">
-                📘
-            </div>
-
-
-            <h2>
-                Русский язык
-            </h2>
-
-
-            <p>
-                5 класс · 1 часть
-            </p>
-
-
-            <button
-                class="open-button"
-                onclick="openBook(
-                    'учебники/русский язык/Russkiy_yazyk_5_klass_1_chast_.pdf',
-                    'Русский язык — 5 класс'
-                )"
-            >
-                📖 Открыть
-            </button>
-
-        </div>
-
-
-    </div>
-
-</main>
-```
+    </main>
 
 </div>
 
-<!-- =========================================================
-     SETTINGS
-     ========================================================= -->
+<!-- SETTINGS -->
 
 <div
     class="settings-overlay"
@@ -1189,823 +760,412 @@ h1 {
     onclick="closeSettingsOutside(event)"
 >
 
-```
-<div
-    class="settings"
-    onclick="event.stopPropagation()"
->
+    <div
+        class="settings"
+        onclick="event.stopPropagation()"
+    >
 
+        <div class="settings-header">
 
-    <div class="settings-header">
+            <h2>⚙️ Настройки</h2>
 
-        <h2>
-            ⚙️ Настройки
-        </h2>
+            <button
+                class="close-settings"
+                onclick="closeSettings()"
+            >
+                ×
+            </button>
 
+        </div>
+
+        <div class="setting">
+
+            <div class="setting-title">
+
+                <span>
+                    Контрастность текста
+                </span>
+
+                <span
+                    class="contrast-value"
+                    id="contrastValue"
+                >
+                    100%
+                </span>
+
+            </div>
+
+            <div class="contrast-controls">
+
+                <button
+                    class="contrast-button"
+                    onclick="changeContrast(-10)"
+                >
+                    −
+                </button>
+
+                <input
+                    id="contrastSlider"
+                    class="contrast-slider"
+                    type="range"
+                    min="50"
+                    max="200"
+                    step="10"
+                    value="100"
+                    oninput="setContrast(this.value)"
+                >
+
+                <button
+                    class="contrast-button"
+                    onclick="changeContrast(10)"
+                >
+                    +
+                </button>
+
+            </div>
+
+            <div class="contrast-description">
+                Изменяет контрастность интерфейса.
+                Настройка сохраняется автоматически.
+            </div>
+
+        </div>
 
         <button
-            class="close-settings"
-            onclick="closeSettings()"
+            class="reset-button"
+            onclick="resetSettings()"
         >
-            ×
+            ↩️ Сбросить настройки
         </button>
 
     </div>
 
-
-    <div class="setting">
-
-
-        <div class="setting-title">
-
-            <span>
-                🌓 Контрастность текста
-            </span>
-
-            <span
-                class="contrast-value"
-                id="contrastValue"
-            >
-                100%
-            </span>
-
-        </div>
-
-
-        <div class="contrast-controls">
-
-
-            <button
-                class="contrast-button"
-                onclick="changeContrast(-10)"
-            >
-                −
-            </button>
-
-
-            <input
-                id="contrastSlider"
-                class="contrast-slider"
-                type="range"
-                min="50"
-                max="200"
-                step="10"
-                value="100"
-                oninput="setContrast(this.value)"
-            >
-
-
-            <button
-                class="contrast-button"
-                onclick="changeContrast(10)"
-            >
-                +
-            </button>
-
-
-        </div>
-
-
-        <div class="contrast-description">
-
-            50% — низкая контрастность.<br>
-
-            100% — обычная контрастность.<br>
-
-            200% — высокая контрастность.
-
-            <br><br>
-
-            Настройка автоматически
-            сохраняется в браузере.
-
-        </div>
-
-
-    </div>
-
-
-    <button
-        class="reset-button"
-        onclick="resetSettings()"
-    >
-        ↩️ Сбросить настройки
-    </button>
-
-
-</div>
-```
-
 </div>
 
-<!-- =========================================================
-     PDF READER
-     ========================================================= -->
+<!-- PDF READER -->
 
 <div id="reader">
 
-```
-<div class="reader-header">
+    <div class="reader-header">
 
+        <button
+            class="reader-button"
+            onclick="closeBook()"
+            title="Закрыть"
+        >
+            ←
+        </button>
 
-    <button
-        class="reader-button"
-        onclick="closeBook()"
-        title="Закрыть"
-    >
-        ←
-    </button>
+        <div
+            class="reader-title"
+            id="readerTitle"
+        >
+            Учебник
+        </div>
 
+        <div
+            class="page-info"
+            id="pageInfo"
+        >
+            1–2 / 0
+        </div>
 
-    <div
-        class="reader-title"
-        id="readerTitle"
-    >
-        Учебник
+        <button
+            class="reader-button"
+            onclick="zoomOut()"
+            title="Уменьшить"
+        >
+            −
+        </button>
+
+        <button
+            class="reader-button"
+            onclick="zoomIn()"
+            title="Увеличить"
+        >
+            +
+        </button>
+
+        <button
+            class="reader-button"
+            onclick="fullscreenBook()"
+            title="Полный экран"
+        >
+            ⛶
+        </button>
+
     </div>
 
+    <div class="book-area">
 
-    <div
-        class="page-info"
-        id="pageInfo"
-    >
-        1–2 / 0
-    </div>
+        <div
+            class="loading"
+            id="loading"
+        >
 
+            <div class="loading-box">
 
-    <button
-        class="reader-button"
-        onclick="zoomOut()"
-        title="Уменьшить"
-    >
-        −
-    </button>
+                <div class="loading-text">
+                    📖 Загрузка учебника...
+                </div>
 
-
-    <button
-        class="reader-button"
-        onclick="zoomIn()"
-        title="Увеличить"
-    >
-        +
-    </button>
-
-
-    <button
-        class="reader-button"
-        onclick="fullscreenBook()"
-        title="Полный экран"
-    >
-        ⛶
-    </button>
-
-
-</div>
-
-
-<div class="book-area">
-
-
-    <div
-        class="loading"
-        id="loading"
-    >
-
-        <div class="loading-box">
-
-            <div class="loading-text">
-                📖 Загрузка учебника...
-            </div>
-
-            <div class="progress">
+                <div class="progress">
+                    <div
+                        class="progress-bar"
+                        id="progressBar"
+                    ></div>
+                </div>
 
                 <div
-                    class="progress-bar"
-                    id="progressBar"
-                ></div>
+                    class="loading-percent"
+                    id="loadingPercent"
+                >
+                    0%
+                </div>
 
             </div>
 
-            <div
-                class="loading-percent"
-                id="loadingPercent"
-            >
-                0%
-            </div>
+        </div>
+
+        <div
+            class="book"
+            id="bookPages"
+        >
+
+            <canvas
+                id="page1"
+                class="page"
+            ></canvas>
+
+            <canvas
+                id="page2"
+                class="page"
+            ></canvas>
 
         </div>
 
     </div>
 
+    <div class="reader-bottom">
 
-    <div
-        class="book"
-        id="bookPages"
-    >
+        <button
+            id="previousButton"
+            onclick="previousPages()"
+        >
+            ← Назад
+        </button>
 
-        <canvas
-            id="page1"
-            class="page"
-        ></canvas>
+        <div
+            class="zoom-info"
+            id="zoomInfo"
+        >
+            100%
+        </div>
 
-
-        <canvas
-            id="page2"
-            class="page"
-        ></canvas>
+        <button
+            id="nextButton"
+            onclick="nextPages()"
+        >
+            Далее →
+        </button>
 
     </div>
 
-
 </div>
-
-
-<div class="reader-bottom">
-
-
-    <button
-        id="previousButton"
-        onclick="previousPages()"
-    >
-        ← Предыдущие
-    </button>
-
-
-    <div
-        class="zoom-info"
-        id="zoomInfo"
-    >
-        100%
-    </div>
-
-
-    <button
-        id="nextButton"
-        onclick="nextPages()"
-    >
-        Следующие →
-    </button>
-
-
-</div>
-```
-
-</div>
-
-<!-- =========================================================
-     PDF.JS
-     ========================================================= -->
-
-<script
-src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js">
-</script>
 
 <script>
-
-
-/* =========================================================
-   PDF.JS WORKER
-   ========================================================= */
 
 pdfjsLib.GlobalWorkerOptions.workerSrc =
 "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
-
-/* =========================================================
-   GLOBAL VARIABLES
-   ========================================================= */
-
 let pdfDocument = null;
-
 let currentPage = 1;
-
-let zoom = 1.0;
-
+let zoom = 1;
 let currentPdfPath = "";
-
 let rendering = false;
-
 let renderToken = 0;
 
+/* ОТКРЫТИЕ PDF */
 
-/* =========================================================
-   OPEN BOOK
-   ========================================================= */
+async function openBook(path,title){
 
-async function openBook(
-    path,
-    title
-) {
+    const reader=document.getElementById("reader");
+    const loading=document.getElementById("loading");
 
+    reader.style.display="block";
 
-    const reader =
-        document.getElementById(
-            "reader"
-        );
+    document.getElementById("readerTitle").textContent=title;
 
+    loading.style.display="flex";
 
-    const loading =
-        document.getElementById(
-            "loading"
-        );
-
-
-    reader.style.display =
-        "block";
-
-
-    document
-        .getElementById(
-            "readerTitle"
-        )
-        .textContent =
-        title;
-
-
-    loading.style.display =
-        "flex";
-
-
-    loading.innerHTML = `
-
+    loading.innerHTML=`
         <div class="loading-box">
-
             <div class="loading-text">
                 📖 Загружаем учебник...
             </div>
-
             <div class="progress">
-
-                <div
-                    class="progress-bar"
-                    id="progressBar"
-                ></div>
-
+                <div class="progress-bar" id="progressBar"></div>
             </div>
-
-            <div
-                class="loading-percent"
-                id="loadingPercent"
-            >
+            <div class="loading-percent" id="loadingPercent">
                 0%
             </div>
-
         </div>
-
     `;
 
-
-    currentPage = 1;
-
-    zoom = 1.0;
-
-    currentPdfPath = path;
-
-    pdfDocument = null;
-
-    rendering = false;
-
+    currentPage=1;
+    zoom=1;
+    currentPdfPath=path;
+    pdfDocument=null;
     renderToken++;
-
 
     updateZoom();
 
+    try{
 
-    try {
+        const url=encodeURI(path);
 
+        const loadingTask=pdfjsLib.getDocument({
+            url:url,
+            rangeChunkSize:1048576,
+            disableAutoFetch:true,
+            disableStream:false
+        });
 
-        /*
-         * encodeURI позволяет корректно
-         * передавать русские папки и пробелы.
-         */
+        loadingTask.onProgress=function(progress){
 
-        const pdfUrl =
-            encodeURI(path);
+            if(progress.total>0){
 
+                const percent=Math.round(
+                    progress.loaded/
+                    progress.total*
+                    100
+                );
 
-        /*
-         * Настройки ускоренной загрузки.
-         *
-         * rangeChunkSize:
-         * размер блока 1 МБ.
-         *
-         * disableAutoFetch:
-         * не скачивать весь PDF заранее.
-         *
-         * disableStream:
-         * потоковая загрузка включена.
-         */
+                const bar=document.getElementById(
+                    "progressBar"
+                );
 
-        const loadingTask =
-            pdfjsLib.getDocument({
+                const text=document.getElementById(
+                    "loadingPercent"
+                );
 
-                url:
-                    pdfUrl,
+                if(bar)
+                    bar.style.width=percent+"%";
 
-                rangeChunkSize:
-                    1024 * 1024,
+                if(text)
+                    text.textContent=percent+"%";
+            }
+        };
 
-                disableAutoFetch:
-                    true,
+        pdfDocument=await loadingTask.promise;
 
-                disableStream:
-                    false,
-
-                useWorkerFetch:
-                    true,
-
-                isEvalSupported:
-                    true
-
-            });
-
-
-        /*
-         * Индикатор загрузки.
-         */
-
-        loadingTask.onProgress =
-            function(progress) {
-
-
-                if (
-                    progress.total > 0
-                ) {
-
-
-                    const percent =
-                        Math.round(
-                            progress.loaded /
-                            progress.total *
-                            100
-                        );
-
-
-                    const bar =
-                        document
-                            .getElementById(
-                                "progressBar"
-                            );
-
-
-                    const text =
-                        document
-                            .getElementById(
-                                "loadingPercent"
-                            );
-
-
-                    if (bar) {
-
-                        bar.style.width =
-                            percent + "%";
-
-                    }
-
-
-                    if (text) {
-
-                        text.textContent =
-                            percent + "%";
-
-                    }
-
-                }
-
-            };
-
-
-        pdfDocument =
-            await loadingTask.promise;
-
-
-        /*
-         * PDF загружен.
-         */
-
-        const bar =
-            document.getElementById(
-                "progressBar"
-            );
-
-
-        const text =
-            document.getElementById(
-                "loadingPercent"
-            );
-
-
-        if (bar)
-            bar.style.width = "100%";
-
-
-        if (text)
-            text.textContent = "100%";
-
-
-        /*
-         * Небольшая пауза,
-         * чтобы браузер успел обновить UI.
-         */
-
-        await new Promise(
-            resolve =>
-                requestAnimationFrame(
-                    resolve
-                )
-        );
-
-
-        loading.style.display =
-            "none";
-
-
-        /*
-         * Рисуем только первые
-         * две страницы.
-         */
+        loading.style.display="none";
 
         await renderPages();
 
+        preloadPage(currentPage+2);
 
-        /*
-         * Предзагрузка следующей
-         * страницы в фоне.
-         */
+    }catch(error){
 
-        preloadPage(
-            currentPage + 2
-        );
+        console.error(error);
 
-
-    } catch(error) {
-
-
-        console.error(
-            "PDF error:",
-            error
-        );
-
-
-        loading.innerHTML = `
-
+        loading.innerHTML=`
             <div class="error">
-
-                ❌ Не удалось открыть учебник.
-
+                ❌ Не удалось открыть PDF.
                 <br><br>
-
-                <b>
-                    Проверь расположение PDF:
-                </b>
-
+                Проверь путь:
                 <br><br>
-
-                ${path}
-
+                <b>${escapeHtml(path)}</b>
                 <br><br>
-
-                <small>
-                    ${escapeHtml(
-                        error.message || ""
-                    )}
-                </small>
-
+                ${escapeHtml(error.message||"")}
             </div>
-
         `;
 
-
-        loading.style.display =
-            "flex";
-
+        loading.style.display="flex";
     }
-
 }
 
-
-/* =========================================================
-   ESCAPE HTML
-   ========================================================= */
-
-function escapeHtml(
-    text
-) {
+function escapeHtml(text){
 
     return String(text)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
-
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
+/* РЕНДЕР */
 
-/* =========================================================
-   RENDER TWO PAGES
-   ========================================================= */
+async function renderPages(){
 
-async function renderPages() {
+    if(!pdfDocument)return;
 
-
-    if (!pdfDocument)
-        return;
-
-
-    const token =
-        ++renderToken;
-
-
-    const firstPage =
-        currentPage;
-
-
-    const secondPage =
-        currentPage + 1;
-
-
-    /*
-     * Первая страница.
-     */
+    const token=++renderToken;
 
     await renderPage(
-        firstPage,
-        document.getElementById(
-            "page1"
-        )
+        currentPage,
+        document.getElementById("page1")
     );
 
+    if(token!==renderToken)return;
 
-    /*
-     * Если пользователь уже
-     * перелистнул страницу,
-     * отменяем старый рендер.
-     */
+    const second=currentPage+1;
 
-    if (
-        token !== renderToken
-    )
-        return;
+    if(second<=pdfDocument.numPages){
 
+        const page2=document.getElementById("page2");
 
-    /*
-     * Вторая страница.
-     */
-
-    if (
-        secondPage <=
-        pdfDocument.numPages
-    ) {
-
-
-        const page2 =
-            document.getElementById(
-                "page2"
-            );
-
-
-        page2.classList.remove(
-            "hidden"
-        );
-
+        page2.classList.remove("hidden");
 
         await renderPage(
-            secondPage,
+            second,
             page2
         );
 
+    }else{
 
-    } else {
-
-
-        document
-            .getElementById(
-                "page2"
-            )
-            .classList.add(
-                "hidden"
-            );
-
+        document.getElementById("page2")
+            .classList.add("hidden");
     }
 
-
-    /*
-     * Информация о страницах.
-     */
-
-    document
-        .getElementById(
-            "pageInfo"
-        )
-        .textContent =
-        `${firstPage}–${Math.min(
-            secondPage,
+    document.getElementById("pageInfo").textContent=
+        `${currentPage}–${Math.min(
+            second,
             pdfDocument.numPages
         )} / ${pdfDocument.numPages}`;
 
-
     updateButtons();
 
-
-    /*
-     * Загружаем следующую страницу
-     * в фоне.
-     */
-
-    preloadPage(
-        currentPage + 2
-    );
-
+    preloadPage(currentPage+2);
 }
 
+async function renderPage(pageNumber,canvas){
 
-/* =========================================================
-   RENDER ONE PAGE
-   ========================================================= */
+    if(!pdfDocument)return;
 
-async function renderPage(
-    pageNumber,
-    canvas
-) {
+    if(
+        pageNumber<1 ||
+        pageNumber>pdfDocument.numPages
+    )return;
 
+    const page=
+        await pdfDocument.getPage(pageNumber);
 
-    if (!pdfDocument)
-        return;
-
-
-    if (
-        pageNumber < 1 ||
-        pageNumber >
-        pdfDocument.numPages
-    )
-        return;
-
-
-    const page =
-        await pdfDocument.getPage(
-            pageNumber
-        );
-
-
-    const viewport =
+    const viewport=
         page.getViewport({
-
-            scale:
-                zoom
-
+            scale:zoom
         });
 
+    const context=
+        canvas.getContext("2d",{
+            alpha:false
+        });
 
-    const context =
-        canvas.getContext(
-            "2d",
-            {
-                alpha:
-                    false
-            }
-        );
+    canvas.width=Math.floor(viewport.width);
+    canvas.height=Math.floor(viewport.height);
 
-
-    canvas.width =
-        Math.floor(
-            viewport.width
-        );
-
-
-    canvas.height =
-        Math.floor(
-            viewport.height
-        );
-
-
-    /*
-     * Белый фон.
-     */
-
-    context.fillStyle =
-        "#ffffff";
-
+    context.fillStyle="#ffffff";
 
     context.fillRect(
         0,
@@ -2014,937 +1174,352 @@ async function renderPage(
         canvas.height
     );
 
-
     await page.render({
-
-        canvasContext:
-            context,
-
-        viewport:
-            viewport,
-
-        intent:
-            "display"
-
+        canvasContext:context,
+        viewport:viewport,
+        intent:"display"
     }).promise;
-
 }
 
+/* ПРЕДЗАГРУЗКА */
 
-/* =========================================================
-   PRELOAD
-   ========================================================= */
+async function preloadPage(pageNumber){
 
-async function preloadPage(
-    pageNumber
-) {
+    if(!pdfDocument)return;
 
+    if(
+        pageNumber<1 ||
+        pageNumber>pdfDocument.numPages
+    )return;
 
-    if (!pdfDocument)
-        return;
+    try{
+        await pdfDocument.getPage(pageNumber);
+    }catch(e){}
+}
 
+/* НАВИГАЦИЯ */
 
-    if (
-        pageNumber < 1 ||
-        pageNumber >
+async function nextPages(){
+
+    if(!pdfDocument||rendering)return;
+
+    if(
+        currentPage+2>
         pdfDocument.numPages
-    )
-        return;
+    )return;
 
+    rendering=true;
 
-    try {
+    currentPage+=2;
 
-
-        /*
-         * PDF.js запросит нужные
-         * данные страницы.
-         */
-
-        await pdfDocument.getPage(
-            pageNumber
-        );
-
-
-    } catch(error) {
-
-
-        console.warn(
-            "Preload:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   NEXT
-   ========================================================= */
-
-async function nextPages() {
-
-
-    if (!pdfDocument)
-        return;
-
-
-    if (rendering)
-        return;
-
-
-    if (
-        currentPage + 2 >
-        pdfDocument.numPages
-    )
-        return;
-
-
-    rendering = true;
-
-
-    try {
-
-
-        currentPage += 2;
-
-
+    try{
         await renderPages();
-
-
-    } finally {
-
-
-        rendering = false;
-
+    }finally{
+        rendering=false;
     }
-
 }
 
+async function previousPages(){
 
-/* =========================================================
-   PREVIOUS
-   ========================================================= */
+    if(!pdfDocument||rendering)return;
 
-async function previousPages() {
+    if(currentPage<=1)return;
 
+    rendering=true;
 
-    if (!pdfDocument)
-        return;
+    currentPage-=2;
 
+    if(currentPage<1)
+        currentPage=1;
 
-    if (rendering)
-        return;
-
-
-    if (
-        currentPage <= 1
-    )
-        return;
-
-
-    rendering = true;
-
-
-    try {
-
-
-        currentPage -= 2;
-
-
-        if (
-            currentPage < 1
-        ) {
-
-            currentPage = 1;
-
-        }
-
-
+    try{
         await renderPages();
-
-
-    } finally {
-
-
-        rendering = false;
-
+    }finally{
+        rendering=false;
     }
-
 }
 
+function updateButtons(){
 
-/* =========================================================
-   UPDATE BUTTONS
-   ========================================================= */
+    if(!pdfDocument)return;
 
-function updateButtons() {
+    document.getElementById(
+        "previousButton"
+    ).disabled=currentPage<=1;
 
-
-    if (!pdfDocument)
-        return;
-
-
-    document
-        .getElementById(
-            "previousButton"
-        )
-        .disabled =
-        currentPage <= 1;
-
-
-    document
-        .getElementById(
-            "nextButton"
-        )
-        .disabled =
-        currentPage + 2 >
+    document.getElementById(
+        "nextButton"
+    ).disabled=
+        currentPage+2>
         pdfDocument.numPages;
-
 }
 
+/* ZOOM */
 
-/* =========================================================
-   ZOOM IN
-   ========================================================= */
+async function zoomIn(){
 
-async function zoomIn() {
+    if(!pdfDocument)return;
 
+    if(zoom>=2.5)return;
 
-    if (!pdfDocument)
-        return;
-
-
-    if (
-        zoom >= 2.5
-    )
-        return;
-
-
-    zoom =
-        Math.min(
-            2.5,
-            zoom + 0.1
-        );
-
+    zoom=Math.min(2.5,zoom+.1);
 
     updateZoom();
 
-
     await renderPages();
-
 }
 
+async function zoomOut(){
 
-/* =========================================================
-   ZOOM OUT
-   ========================================================= */
+    if(!pdfDocument)return;
 
-async function zoomOut() {
+    if(zoom<=.5)return;
 
-
-    if (!pdfDocument)
-        return;
-
-
-    if (
-        zoom <= 0.5
-    )
-        return;
-
-
-    zoom =
-        Math.max(
-            0.5,
-            zoom - 0.1
-        );
-
+    zoom=Math.max(.5,zoom-.1);
 
     updateZoom();
 
-
     await renderPages();
-
 }
 
+function updateZoom(){
 
-/* =========================================================
-   UPDATE ZOOM
-   ========================================================= */
-
-function updateZoom() {
-
-
-    const element =
-        document.getElementById(
-            "zoomInfo"
-        );
-
-
-    if (element) {
-
-
-        element.textContent =
-            Math.round(
-                zoom * 100
-            ) + "%";
-
-    }
-
+    document.getElementById("zoomInfo")
+        .textContent=
+        Math.round(zoom*100)+"%";
 }
 
+/* ЗАКРЫТИЕ */
 
-/* =========================================================
-   CLOSE BOOK
-   ========================================================= */
+function closeBook(){
 
-function closeBook() {
-
-
-    document
-        .getElementById(
-            "reader"
-        )
-        .style.display =
-        "none";
-
-
-    /*
-     * Отменяем старые рендеры.
-     */
+    document.getElementById("reader")
+        .style.display="none";
 
     renderToken++;
-
 }
 
+/* FULLSCREEN */
 
-/* =========================================================
-   FULLSCREEN
-   ========================================================= */
+function fullscreenBook(){
 
-function fullscreenBook() {
+    const reader=
+        document.getElementById("reader");
 
+    if(document.fullscreenElement){
 
-    const reader =
-        document.getElementById(
-            "reader"
-        );
-
-
-    if (
-        document.fullscreenElement
-    ) {
-
-
-        if (
-            document.exitFullscreen
-        ) {
-
+        if(document.exitFullscreen)
             document.exitFullscreen();
 
-        }
+    }else{
 
-
-    } else {
-
-
-        if (
-            reader.requestFullscreen
-        ) {
-
+        if(reader.requestFullscreen)
             reader.requestFullscreen();
-
-        }
-
     }
-
 }
 
+/* КЛАВИАТУРА */
 
-/* =========================================================
-   KEYBOARD
-   ========================================================= */
+document.addEventListener("keydown",async e=>{
 
-document.addEventListener(
-    "keydown",
-    async function(e) {
+    if(
+        document.getElementById("reader")
+        .style.display!=="block"
+    )return;
 
-
-        const reader =
-            document.getElementById(
-                "reader"
-            );
-
-
-        if (
-            reader.style.display !==
-            "block"
-        )
-            return;
-
-
-        if (
-            e.key === "ArrowRight"
-        ) {
-
-            e.preventDefault();
-
-            await nextPages();
-
-        }
-
-
-        if (
-            e.key === "ArrowLeft"
-        ) {
-
-            e.preventDefault();
-
-            await previousPages();
-
-        }
-
-
-        if (
-            e.key === "+" ||
-            e.key === "="
-        ) {
-
-            e.preventDefault();
-
-            await zoomIn();
-
-        }
-
-
-        if (
-            e.key === "-"
-        ) {
-
-            e.preventDefault();
-
-            await zoomOut();
-
-        }
-
-
-        if (
-            e.key === "Escape" &&
-            !document.fullscreenElement
-        ) {
-
-            closeBook();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   TOUCH SWIPE
-   ========================================================= */
-
-let touchStartX = 0;
-
-
-document
-    .getElementById(
-        "reader"
-    )
-    .addEventListener(
-        "touchstart",
-        function(e) {
-
-
-            if (
-                e.changedTouches.length
-            ) {
-
-                touchStartX =
-                    e.changedTouches[0]
-                        .screenX;
-
-            }
-
-        },
-        {
-            passive:
-                true
-        }
-    );
-
-
-document
-    .getElementById(
-        "reader"
-    )
-    .addEventListener(
-        "touchend",
-        async function(e) {
-
-
-            if (
-                !e.changedTouches.length
-            )
-                return;
-
-
-            const touchEndX =
-                e.changedTouches[0]
-                    .screenX;
-
-
-            const difference =
-                touchEndX -
-                touchStartX;
-
-
-            if (
-                difference <
-                -50
-            ) {
-
-                await nextPages();
-
-            }
-
-
-            if (
-                difference >
-                50
-            ) {
-
-                await previousPages();
-
-            }
-
-        },
-        {
-            passive:
-                true
-        }
-    );
-
-
-</script>
-
-<!-- =========================================================
-     SEARCH / FILTER / SETTINGS
-     ========================================================= -->
-
-<script>
-
-
-/* =========================================================
-   CURRENT FILTER
-   ========================================================= */
-
-let currentFilter =
-    "all";
-
-
-/* =========================================================
-   FILTER BOOKS
-   ========================================================= */
-
-function filterBooks(
-    filter,
-    element
-) {
-
-
-    currentFilter =
-        filter;
-
-
-    document
-        .querySelectorAll(
-            ".nav"
-        )
-        .forEach(
-            item => {
-
-                item.classList.remove(
-                    "active"
-                );
-
-            }
-        );
-
-
-    if (element) {
-
-        element.classList.add(
-            "active"
-        );
-
+    if(e.key==="ArrowRight"){
+        e.preventDefault();
+        await nextPages();
     }
 
+    if(e.key==="ArrowLeft"){
+        e.preventDefault();
+        await previousPages();
+    }
+
+    if(e.key==="+"||e.key==="="){
+        e.preventDefault();
+        await zoomIn();
+    }
+
+    if(e.key==="-"){
+        e.preventDefault();
+        await zoomOut();
+    }
+
+    if(e.key==="Escape"&&!document.fullscreenElement){
+        closeBook();
+    }
+});
+
+/* СВАЙП */
+
+let touchStartX=0;
+
+document.getElementById("reader")
+.addEventListener("touchstart",e=>{
+
+    if(e.changedTouches.length)
+        touchStartX=
+            e.changedTouches[0].screenX;
+
+},{passive:true});
+
+document.getElementById("reader")
+.addEventListener("touchend",async e=>{
+
+    if(!e.changedTouches.length)return;
+
+    const end=
+        e.changedTouches[0].screenX;
+
+    const diff=end-touchStartX;
+
+    if(diff<-50)
+        await nextPages();
+
+    if(diff>50)
+        await previousPages();
+
+},{passive:true});
+
+/* ПОИСК */
+
+let currentFilter="all";
+
+function filterBooks(filter,element){
+
+    currentFilter=filter;
+
+    document.querySelectorAll(".nav")
+        .forEach(x=>x.classList.remove("active"));
+
+    if(element)
+        element.classList.add("active");
 
     searchBooks();
-
 }
 
+function searchBooks(){
 
-/* =========================================================
-   SEARCH
-   ========================================================= */
+    const query=
+        document.getElementById("search")
+        .value
+        .toLowerCase()
+        .trim();
 
-function searchBooks() {
+    document.querySelectorAll(".book-card")
+        .forEach(card=>{
 
+            const name=
+                card.dataset.name.toLowerCase();
 
-    const input =
-        document.getElementById(
-            "search"
-        );
+            const filterOK=
+                currentFilter==="all"||
+                card.classList.contains(currentFilter);
 
+            const searchOK=
+                name.includes(query);
 
-    const query =
-        input
-            .value
-            .toLowerCase()
-            .trim();
-
-
-    document
-        .querySelectorAll(
-            ".book-card"
-        )
-        .forEach(
-            card => {
-
-
-                const name =
-                    card
-                        .dataset
-                        .name
-                        .toLowerCase();
-
-
-                const filterOK =
-                    currentFilter ===
-                        "all" ||
-
-                    card.classList.contains(
-                        currentFilter
-                    );
-
-
-                const searchOK =
-                    name.includes(
-                        query
-                    );
-
-
-                if (
-                    filterOK &&
-                    searchOK
-                ) {
-
-                    card.style.display =
-                        "block";
-
-                } else {
-
-                    card.style.display =
-                        "none";
-
-                }
-
-            }
-        );
-
+            card.style.display=
+                filterOK&&searchOK?
+                "block":
+                "none";
+        });
 }
 
+/* НАСТРОЙКИ */
 
-/* =========================================================
-   OPEN SETTINGS
-   ========================================================= */
+function openSettings(){
 
-function openSettings() {
-
-
-    document
-        .getElementById(
-            "settingsOverlay"
-        )
-        .classList.add(
-            "show"
-        );
-
-}
-
-
-/* =========================================================
-   CLOSE SETTINGS
-   ========================================================= */
-
-function closeSettings() {
-
-
-    document
-        .getElementById(
-            "settingsOverlay"
-        )
-        .classList.remove(
-            "show"
-        );
-
-}
-
-
-/* =========================================================
-   CLOSE SETTINGS BY CLICKING OUTSIDE
-   ========================================================= */
-
-function closeSettingsOutside(
-    event
-) {
-
-
-    if (
-        event.target.id ===
+    document.getElementById(
         "settingsOverlay"
-    ) {
+    ).classList.add("show");
+}
 
+function closeSettings(){
+
+    document.getElementById(
+        "settingsOverlay"
+    ).classList.remove("show");
+}
+
+function closeSettingsOutside(event){
+
+    if(
+        event.target.id==="settingsOverlay"
+    ){
         closeSettings();
-
     }
-
 }
 
+function setContrast(value){
 
-/* =========================================================
-   SET CONTRAST
-   ========================================================= */
+    value=Number(value);
 
-function setContrast(
-    value
-) {
+    value=Math.max(
+        50,
+        Math.min(200,value)
+    );
 
-
-    value =
-        Number(value);
-
-
-    if (
-        Number.isNaN(value)
-    ) {
-
-        value = 100;
-
-    }
-
-
-    value =
-        Math.max(
-            50,
-            Math.min(
-                200,
-                value
-            )
-        );
-
-
-    document
-        .documentElement
-        .style
+    document.documentElement.style
         .setProperty(
-            "--text-contrast",
-            value / 100
+            "--contrast",
+            value/100
         );
 
+    document.getElementById(
+        "contrastValue"
+    ).textContent=value+"%";
 
-    const valueElement =
-        document.getElementById(
-            "contrastValue"
-        );
+    document.getElementById(
+        "contrastSlider"
+    ).value=value;
 
-
-    if (valueElement) {
-
-        valueElement.textContent =
-            value + "%";
-
-    }
-
-
-    const slider =
-        document.getElementById(
-            "contrastSlider"
-        );
-
-
-    if (slider) {
-
-        slider.value =
-            value;
-
-    }
-
-
-    /*
-     * Сохраняем настройку.
-     */
-
-    try {
-
-        localStorage.setItem(
-            "textContrast",
-            String(value)
-        );
-
-    } catch(error) {
-
-        console.warn(
-            "LocalStorage:",
-            error
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   CHANGE CONTRAST
-   ========================================================= */
-
-function changeContrast(
-    amount
-) {
-
-
-    const slider =
-        document.getElementById(
-            "contrastSlider"
-        );
-
-
-    let value =
-        Number(
-            slider.value
-        );
-
-
-    value +=
-        amount;
-
-
-    value =
-        Math.max(
-            50,
-            Math.min(
-                200,
-                value
-            )
-        );
-
-
-    setContrast(
+    localStorage.setItem(
+        "textContrast",
         value
     );
-
 }
 
+function changeContrast(amount){
 
-/* =========================================================
-   RESET SETTINGS
-   ========================================================= */
-
-function resetSettings() {
-
+    const slider=
+        document.getElementById(
+            "contrastSlider"
+        );
 
     setContrast(
-        100
+        Number(slider.value)+amount
     );
-
 }
 
+function resetSettings(){
 
-/* =========================================================
-   LOAD SAVED SETTINGS
-   ========================================================= */
+    setContrast(100);
+}
 
-(function loadSettings() {
+(function(){
 
-
-    let saved =
-        null;
-
-
-    try {
-
-        saved =
-            localStorage.getItem(
-                "textContrast"
-            );
-
-    } catch(error) {
-
-        console.warn(
-            "LocalStorage:",
-            error
+    const saved=
+        localStorage.getItem(
+            "textContrast"
         );
 
-    }
-
-
-    if (
-        saved !== null
-    ) {
-
-        setContrast(
-            Number(saved)
-        );
-
-    } else {
-
-        setContrast(
-            100
-        );
-
-    }
+    setContrast(
+        saved===null?
+        100:
+        Number(saved)
+    );
 
 })();
 
+document.addEventListener("keydown",e=>{
 
-/* =========================================================
-   ESC CLOSE SETTINGS
-   ========================================================= */
+    if(e.key==="Escape")
+        closeSettings();
 
-document.addEventListener(
-    "keydown",
-    function(e) {
-
-
-        if (
-            e.key === "Escape"
-        ) {
-
-
-            const overlay =
-                document.getElementById(
-                    "settingsOverlay"
-                );
-
-
-            if (
-                overlay.classList.contains(
-                    "show"
-                )
-            ) {
-
-                closeSettings();
-
-            }
-
-        }
-
-    }
-);
-
+});
 
 </script>
 
